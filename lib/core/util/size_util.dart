@@ -13,7 +13,7 @@ class SizeUtil {
     return fontSize.sp;
   }
 
-  static double setRaduis(double raduis) {
+  static double setRadius(double raduis) {
     return raduis.h;
   }
 }
