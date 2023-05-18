@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.5
   get_it: ^7.6.0  
   flutter_screenutil: ^5.7.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
@@ -87,7 +88,7 @@ flutter:
         - asset: assets/fonts/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins-Thin.ttf
         - asset: assets/fonts/Poppins-ThinItalic.ttf
-        
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
