@@ -1,5 +1,17 @@
+import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 final instance = GetIt.instance;
 
-initModule() {}
+initSplash() {
+  Get.put<SplashController>(SplashController());
+}
+
+finishSplash() {
+  Get.delete<SplashController>();
+}
+
+initOutBoarding() {
+  finishSplash();
+}
