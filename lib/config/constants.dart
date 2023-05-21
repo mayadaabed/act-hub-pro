@@ -1,4 +1,5 @@
 class Constants {
-  static const deviceWidth = 375.0;
-  static const deviceHeigth = 812.0;
+  static const double deviceWidth = 375.0;
+  static const double deviceHeigth = 812.0;
+  static const int splashDuration = 3;
 }
