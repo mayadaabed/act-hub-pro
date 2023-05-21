@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/resources/manager_strings.dart';
-import '../features/splash/view/splash_view.dart';
+import '../features/splash/presentation/view/splash_view.dart';
 
 class Routes {
   static const String splashView = '/splash_view';
