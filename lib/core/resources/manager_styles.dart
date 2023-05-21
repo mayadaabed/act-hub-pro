@@ -1,39 +1,61 @@
 import 'package:flutter/material.dart';
+
 import 'manager_fonts.dart';
 
-TextStyle _getTextStyle(double fontSize, String fontFamily,
-    FontWeight fontWeight, Color color, TextDecoration decoration) {
+TextStyle _textStyle({
+  required double fontSize,
+  required String fontFamily,
+  required FontWeight fontWeight,
+  required Color color,
+  required TextDecoration decoration,
+}) {
   return TextStyle(
-      fontSize: fontSize,
-      fontFamily: fontFamily,
-      fontWeight: fontWeight,
-      color: color,
-      decoration: decoration);
+    fontSize: fontSize,
+    fontFamily: fontFamily,
+    fontWeight: fontWeight,
+    color: color,
+    decoration: decoration,
+  );
 }
 
-// Regular TextStyle
-TextStyle getTextStyle(
-    {required double fontSize,
-    required Color color,
-    TextDecoration decoration=TextDecoration.none}) {
-  return _getTextStyle(fontSize, ManagerFontFamily.fontFamily,
-      ManagerFontWeight.regular, color, decoration);
+TextStyle getRegularTextStyle({
+  required double fontSize,
+  required Color color,
+  TextDecoration decoration = TextDecoration.none,
+}) {
+  return _textStyle(
+    fontSize: fontSize,
+    fontFamily: ManagerFontFamily.fontFamily,
+    fontWeight: ManagerFontWeight.regular,
+    color: color,
+    decoration: decoration,
+  );
 }
 
-// Medium TextStyle
-TextStyle getMediumStyle(
-    {required double fontSize,
-    required Color color,
-    TextDecoration decoration=TextDecoration.none}) {
-  return _getTextStyle(fontSize, ManagerFontFamily.fontFamily,
-      ManagerFontWeight.medium, color, decoration);
+TextStyle getBoldTextStyle({
+  required double fontSize,
+  required Color color,
+  TextDecoration decoration = TextDecoration.none,
+}) {
+  return _textStyle(
+    fontSize: fontSize,
+    fontFamily: ManagerFontFamily.fontFamily,
+    fontWeight: ManagerFontWeight.bold,
+    color: color,
+    decoration: decoration,
+  );
 }
 
-// Bold TextStyle
-TextStyle getBoldStyle(
-    {required double fontSize,
-    required Color color,
-    TextDecoration decoration=TextDecoration.none}) {
-  return _getTextStyle(fontSize, ManagerFontFamily.fontFamily,
-      ManagerFontWeight.bold, color, decoration);
+TextStyle getMediumTextStyle({
+  required double fontSize,
+  required Color color,
+  TextDecoration decoration = TextDecoration.none,
+}) {
+  return _textStyle(
+    fontSize: fontSize,
+    fontFamily: ManagerFontFamily.fontFamily,
+    fontWeight: ManagerFontWeight.medium,
+    color: color,
+    decoration: decoration,
+  );
 }
