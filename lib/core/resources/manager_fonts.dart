@@ -11,7 +11,7 @@ class ManagerFontWeight {
   static const FontWeight medium = FontWeight.w500;
   static const FontWeight bold = FontWeight.w700;
 }
-// hh
+
 class ManagerFontSize {
   static  double s2 = SizeUtil.setFontSize(2.0);
   static  double s4 = SizeUtil.setFontSize(4.0);
