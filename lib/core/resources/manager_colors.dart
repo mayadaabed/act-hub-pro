@@ -32,4 +32,5 @@ class ManagerColors {
   static const Color descriptionColor = Color(0xff6A7F84);
   static const Color scaffoldBackgroundColorLight = Colors.white;
   static const Color scaffoldBackgroundColorDark = Colors.black;
+  static const Color disabledColor = Colors.grey;
 }
