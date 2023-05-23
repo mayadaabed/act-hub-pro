@@ -10,6 +10,7 @@ Widget scaffoldWithBackgroundImage(
   return willPopScope(
     child: Scaffold(
       backgroundColor: backgroundColor,
+      resizeToAvoidBottomInset: true,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),

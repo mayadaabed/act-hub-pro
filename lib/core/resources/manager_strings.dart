@@ -3,15 +3,17 @@ class ManagerStrings {
   static const String actHub = 'Act-Hub';
   static const String logoutFailed = 'Logout Failed';
   static const String outBoardingView = 'Out Boarding View';
-  static const String outBoardingTitle1 = 'Find your cozy working space';
-  static const String outBoardingTitle2 = 'Find your cozy working space';
-  static const String outBoardingTitle3 = 'Find your cozy working space';
+  static const String outBoardingTitle1 = 'Find your cozy working space 1';
+  static const String outBoardingTitle2 = 'Find your cozy working space 2';
+  static const String outBoardingTitle3 = 'Find your cozy working space 3';
   static const String outBoardingSubTitle1 =
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.';
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 1.';
   static const String outBoardingSubTitle2 =
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.';
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 2.';
   static const String outBoardingSubTitle3 =
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.';
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 3.';
+  static const String getStartedButton = 'Let\'s get started';
+
   static const String login = 'Login';
   static const String signUp = 'Sign Up';
   static const String email = "Email";

@@ -33,4 +33,6 @@ class ManagerColors {
   static const Color scaffoldBackgroundColorLight = Colors.white;
   static const Color scaffoldBackgroundColorDark = Colors.black;
   static const Color disabledColor = Colors.grey;
+  static const Color transparent = Colors.transparent;
+  static const Color iconColor = Colors.white;
 }
