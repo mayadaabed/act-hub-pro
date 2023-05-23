@@ -47,7 +47,7 @@ class OutBoardingView extends StatelessWidget {
               ),
               const SilderIndicator(),
               SizedBox(
-                height: ManagerHeight.h20,
+                height: ManagerHeight.h50,
               ),
               Text(
                 ManagerStrings.outBoardingTitle1,
@@ -57,7 +57,7 @@ class OutBoardingView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: ManagerHeight.h30,
+                height: ManagerHeight.h20,
               ),
               Text(
                 ManagerStrings.outBoardingSubTitle1,
@@ -70,7 +70,18 @@ class OutBoardingView extends StatelessWidget {
               SizedBox(
                 height: ManagerHeight.h40,
               ),
-              mainButton(child: const Icon(Icons.arrow_forward_outlined))
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: mainButton(
+                    child: const Icon(
+                      Icons.arrow_forward_outlined,
+                      color: ManagerColors.iconColor,
+                    ),
+                    shapeBorder: const CircleBorder(),
+                    minWidth: ManagerWidth.w50,
+                    height: ManagerHeight.h50,
+                    color: ManagerColors.primaryColor),
+              ),
             ],
           ),
         ),
