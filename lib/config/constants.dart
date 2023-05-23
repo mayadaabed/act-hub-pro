@@ -3,4 +3,6 @@ class Constants {
   static const double deviceHeigth = 812.0;
   static const int splashDuration = 3;
   static const double elevationAppBar = 0;
+  static const int outBoardingDuration = 1;
+
 }
