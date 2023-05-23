@@ -59,3 +59,18 @@ TextStyle getMediumTextStyle({
     decoration: decoration,
   );
 }
+
+TextStyle getTextStyle({
+  required double fontSize,
+  required Color color,
+  required FontWeight weight,
+  TextDecoration decoration = TextDecoration.none,
+}) {
+  return _textStyle(
+    fontSize: fontSize,
+    fontFamily: ManagerFontFamily.fontFamily,
+    fontWeight: weight,
+    color: color,
+    decoration: decoration,
+  );
+}
