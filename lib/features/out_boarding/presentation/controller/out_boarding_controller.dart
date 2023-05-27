@@ -1,12 +1,18 @@
-import 'package:act_hub_project/config/constants.dart';
-import 'package:flutter/widgets.dart';
+import 'dart:core';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
+import '../../../../config/constants.dart';
+import '../../../../config/dependency_injection.dart';
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_strings.dart';
+import '../../../../core/storage/local/app_settings_shared_preferences.dart';
+import '../../../../routes/routes.dart';
 import '../view/widget/out_boarding_item.dart';
 
 class OutBoardingController extends GetxController {
+  final AppSettingsSharedPreferences _appSettingsSharedPreferences =
+      instance<AppSettingsSharedPreferences>();
+
   late PageController pageController;
   static const firstPage = 0;
   static const lastPage = 2;
@@ -42,30 +48,51 @@ class OutBoardingController extends GetxController {
     super.onClose();
   }
 
-  setCurrentPage(int index) {
+  Future<void> setCurrentPage(int index) async {
+    await _appSettingsSharedPreferences.setOutBoardingViewed();
     currentPage = index;
     update();
   }
 
   void skipPage() {
-    pageController.animateToPage(lastPage,
-        duration: const Duration(seconds: Constants.outBoardingDuration),
-        curve: Curves.fastLinearToSlowEaseIn);
+    animateToPage(index: lastPage);
     currentPage = lastPage;
     update();
   }
 
   void nextPage() {
-    if (isLastPage()) {
-      pageController.animateToPage(++currentPage,
-          duration: const Duration(seconds: Constants.outBoardingDuration),
-          curve: Curves.fastLinearToSlowEaseIn);
+    if (isNotLastedPage()) {
+      animateToPage(index: ++currentPage);
+      update();
     }
-    update();
   }
 
-  bool isLastPage() {
+  Future<void> getStart() async {
+    await _appSettingsSharedPreferences.setOutBoardingViewed();
+    Get.offAllNamed(Routes.loginView);
+  }
+
+  void previousPage() {
+    if (isNotFirstPage()) {
+      animateToPage(index: --currentPage);
+      update();
+    }
+  }
+
+  Future<void> animateToPage({required int index}) {
+    return pageController.animateToPage(
+      index,
+      duration: const Duration(seconds: Constants.outBoardingDuration),
+      curve: Curves.fastLinearToSlowEaseIn,
+    );
+  }
+
+  bool isNotLastedPage() {
     return currentPage < lastPage;
+  }
+
+  bool isNotFirstPage() {
+    return currentPage > firstPage;
   }
 
   bool showBackButton() {
