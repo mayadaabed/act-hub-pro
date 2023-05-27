@@ -22,7 +22,7 @@ class SilderIndicator extends StatelessWidget {
           child: Row(
             children: [
               ...List.generate(
-                3,
+                Constants.sliderItems,
                 (index) => Expanded(
                   child: AnimatedContainer(
                     duration:

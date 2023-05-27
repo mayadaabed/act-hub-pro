@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-void main() {
+import 'config/dependency_injection.dart';
+
+void main() async {
+  await initModule();
   runApp(MyApp());
 }
 
