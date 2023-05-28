@@ -1,5 +1,8 @@
+import 'package:act_hub_project/core/network/app_api.dart';
+import 'package:act_hub_project/core/network/dio_factory.dart';
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -10,7 +13,7 @@ import '../core/storage/local/app_settings_shared_preferences.dart';
 final instance = GetIt.instance;
 
 initModule() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
 
@@ -18,9 +21,13 @@ initModule() async {
     () => sharedPreferences,
   );
 
-   instance.registerLazySingleton<AppSettingsSharedPreferences>(
+  instance.registerLazySingleton<AppSettingsSharedPreferences>(
       () => AppSettingsSharedPreferences(instance()));
 
+  instance.registerLazySingleton(() => DioFactory());
+
+  Dio dio = await instance<DioFactory>().getDio();
+  instance.registerLazySingleton(() => AppApi(dio));
 }
 
 initSplash() {

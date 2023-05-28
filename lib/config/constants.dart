@@ -10,4 +10,12 @@ class Constants {
 
 class ConstantsPrefsKeys {
   static const String outBoardingViewedKey = 'out_boarding_viewed';
+  static const String token = 'token';
+}
+
+class ApiConstants {
+  static const String baseUrl = 'http://act-hub.actit.ps';
+  static const String authorization = 'Authorization';
+  static const int sendTimeOutDuration = 120;
+  static const int recieveTimeOutDuration = 120;
 }
