@@ -1,5 +1,4 @@
 class Constants {
-  static const String baseUrl = 'http://act-hub.actit.ps';
   static const double deviceWidth = 375.0;
   static const double deviceHeigth = 812.0;
   static const int splashDuration = 3;
@@ -11,4 +10,12 @@ class Constants {
 
 class ConstantsPrefsKeys {
   static const String outBoardingViewedKey = 'out_boarding_viewed';
+  static const String token = 'token';
+}
+
+class ApiConstants {
+  static const String baseUrl = 'http://act-hub.actit.ps';
+  static const String authorization = 'Authorization';
+  static const int sendTimeOutDuration = 120;
+  static const int recieveTimeOutDuration = 120;
 }
