@@ -13,6 +13,8 @@ class ManagerStrings {
   static const String outBoardingSubTitle3 =
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy 3.';
   static const String getStartedButton = 'Let\'s get started';
+  static const String bearer = 'Bearer';
+
 
   static const String login = 'Login';
   static const String signUp = 'Sign Up';
