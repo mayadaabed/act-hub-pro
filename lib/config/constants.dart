@@ -24,7 +24,5 @@ class ApiConstants {
   static const String errors = 'errors';
   static const String error = 'error';
   static const String badRequest = 'bad request';
-
+  static const String noInternetConnection = 'No Internet Connection';
 }
-
-
