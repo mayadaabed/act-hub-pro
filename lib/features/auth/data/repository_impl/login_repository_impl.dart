@@ -17,10 +17,17 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<Either<Fauiler, Login>> login(LoginRequest loginRequest) async {
     if (await networkInfo.isConnected) {
-      final response = await _dataSourceImplement.login(loginRequest);
-      return Right(response.toDomain());
+      try {
+        final response = await _dataSourceImplement.login(loginRequest);
+        return Right(response.toDomain());
+      } catch (e) {
+        return Left(
+          ErrorHandler.handle(e).fauiler,
+        );
+      }
     } else {
-      return Left(Fauiler(ResponseCode.NO_INTERNET_CONNECTION.value, ApiConstants.noInternetConnection));
+      return Left(Fauiler(ResponseCode.NO_INTERNET_CONNECTION.value,
+          ApiConstants.noInternetConnection));
     }
   }
 }
