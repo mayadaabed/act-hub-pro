@@ -1,5 +1,9 @@
 import 'package:act_hub_project/core/network/app_api.dart';
 import 'package:act_hub_project/core/network/dio_factory.dart';
+import 'package:act_hub_project/features/auth/data/data_source/remote_login_data_source.dart';
+import 'package:act_hub_project/features/auth/data/repository_impl/login_repository_impl.dart';
+import 'package:act_hub_project/features/auth/domain/repository/login_repository.dart';
+import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -54,4 +58,31 @@ initOutBoarding() {
 
 disposeOutBoarding() {
   Get.delete<OutBoardingController>();
+}
+
+initLoginModule() {
+  if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
+    instance.registerLazySingleton<RemoteLoginDataSource>(
+      () => RemoteLoginDataSourceImplement(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<LoginRepository>()) {
+    instance.registerLazySingleton<LoginRepository>(
+      () => LoginRepositoryImpl(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(
+      () => LoginUseCase(
+        instance(),
+      ),
+    );
+  }
 }
