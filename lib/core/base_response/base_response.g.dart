@@ -1,18 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_response.dart';
+part of 'base_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
-    LoginResponse(
-      json['token'] as String?,
-    )..message = json['message'] as String?;
+BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) =>
+    BaseResponse()..message = json['message'] as String?;
 
-Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
+Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'token': instance.token,
     };
