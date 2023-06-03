@@ -9,16 +9,16 @@ import 'package:act_hub_project/features/auth/domain/repository/login_repository
 import 'package:dartz/dartz.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
-  final RemoteLoginDataSourceImplement _dataSourceImplement;
+  final RemoteLoginDataSource _dataSource;
   final NetworkInfo networkInfo;
 
-  LoginRepositoryImpl(this._dataSourceImplement, this.networkInfo);
+  LoginRepositoryImpl(this._dataSource, this.networkInfo);
 
   @override
   Future<Either<Fauiler, Login>> login(LoginRequest loginRequest) async {
     if (await networkInfo.isConnected) {
       try {
-        final response = await _dataSourceImplement.login(loginRequest);
+        final response = await _dataSource.login(loginRequest);
         return Right(response.toDomain());
       } catch (e) {
         return Left(
