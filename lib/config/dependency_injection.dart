@@ -4,6 +4,7 @@ import 'package:act_hub_project/features/auth/data/data_source/remote_login_data
 import 'package:act_hub_project/features/auth/data/repository_impl/login_repository_impl.dart';
 import 'package:act_hub_project/features/auth/domain/repository/login_repository.dart';
 import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
+import 'package:act_hub_project/features/auth/presentation/controller/login_controller.dart';
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -85,4 +86,6 @@ initLoginModule() {
       ),
     );
   }
+
+  Get.put<LoginController>(LoginController());
 }
