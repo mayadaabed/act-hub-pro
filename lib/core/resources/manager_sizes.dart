@@ -17,6 +17,7 @@ class ManagerRadius {
   static double r28 = SizeUtil.setRadius(28.0);
   static double r30 = SizeUtil.setRadius(30.0);
   static double r40 = SizeUtil.setRadius(40.0);
+  static double r44 = SizeUtil.setRadius(44.0);
   static double r50 = SizeUtil.setRadius(50.0);
   static double r80 = SizeUtil.setRadius(80.0);
   static double r100 = SizeUtil.setRadius(100.0);
