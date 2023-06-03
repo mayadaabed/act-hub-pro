@@ -6,6 +6,8 @@ class Constants {
   static const int outBoardingDuration = 1;
   static const double elevationButton = 0;
   static const int sliderItems = 3;
+  static const int loginFirstPartFlex = 1;
+  static const int loginSecondPartFlex = 3;
 }
 
 class ConstantsPrefsKeys {
@@ -25,6 +27,5 @@ class ApiConstants {
   static const String error = 'error';
   static const String badRequest = 'bad request';
   static const String noInternetConnection = 'No Internet Connection';
-    static const String token = 'token';
-
+  static const String token = 'token';
 }
