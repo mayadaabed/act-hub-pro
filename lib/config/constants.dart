@@ -28,4 +28,7 @@ class ApiConstants {
   static const String badRequest = 'bad request';
   static const String noInternetConnection = 'No Internet Connection';
   static const String token = 'token';
+  static const String acceptLanguage = 'Accept-Language';
+  static const String english = 'en';
+  static const String arabic = 'ar';
 }
