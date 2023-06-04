@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/internet_checker/internet_checker.dart';
 import '../core/storage/local/app_settings_shared_preferences.dart';
+import '../features/auth/presentation/controller/Register_controller.dart';
 
 final instance = GetIt.instance;
 
@@ -82,10 +83,14 @@ initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(
       () => LoginUseCase(
-        instance(),
+        instance<LoginRepository>(),
       ),
     );
   }
 
   Get.put<LoginController>(LoginController());
+}
+
+initRegisterModule() {
+  Get.put<RegisterController>(RegisterController());
 }

@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import '../config/dependency_injection.dart';
 import '../core/resources/manager_strings.dart';
 import '../features/auth/presentation/view/login_view.dart';
+import '../features/auth/presentation/view/register_view.dart';
+import '../features/home/presentation/view/home_view.dart';
 import '../features/splash/presentation/view/splash_view.dart';
 
 class Routes {
   static const String splashView = '/splash_view';
   static const String outBoardingView = '/out_boarding_view';
   static const String loginView = '/login_view';
+  static const String homeView = '/home_view';
+  static const String registerView = '/register_view';
 }
 
 class RouteGenerator {
@@ -24,6 +28,12 @@ class RouteGenerator {
       case Routes.loginView:
         initLoginModule();
         return MaterialPageRoute(builder: (_) => LoginView());
+      case Routes.registerView:
+        initRegisterModule();
+        return MaterialPageRoute(builder: (_) => RegisterView());
+      case Routes.homeView:
+        initLoginModule();
+        return MaterialPageRoute(builder: (_) => const HomeView());
       default:
         return undefinedRoute();
     }
@@ -33,10 +43,10 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: Text(ManagerStrings.noRouteFound),
+                title: const Text(ManagerStrings.noRoutFound),
               ),
-              body: Center(
-                child: Text(ManagerStrings.noRouteFound),
+              body: const Center(
+                child: Text(ManagerStrings.noRoutFound),
               ),
             ));
   }

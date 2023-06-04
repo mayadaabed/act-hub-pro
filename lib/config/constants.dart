@@ -8,11 +8,16 @@ class Constants {
   static const int sliderItems = 3;
   static const int loginFirstPartFlex = 1;
   static const int loginSecondPartFlex = 3;
+  static const int loginTimer = 3;
+  static const double getStateWidgetRenderStateElevation = 3;
 }
 
 class ConstantsPrefsKeys {
   static const String outBoardingViewedKey = 'out_boarding_viewed';
   static const String token = 'token';
+  static const String email = 'email';
+  static const String password = 'password';
+  static const String loggedIn = 'is_logged_in';
 }
 
 class ApiConstants {
