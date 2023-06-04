@@ -94,7 +94,7 @@ class LoginView extends StatelessWidget {
                         height: ManagerHeight.h40,
                         onPressed: () {
                           if (controller.formKey.currentState!.validate()) {
-                            controller.login();
+                            controller.login(context);
                           }
                         },
                       ),
