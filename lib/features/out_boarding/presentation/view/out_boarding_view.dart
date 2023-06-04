@@ -66,7 +66,7 @@ class OutBoardingView extends StatelessWidget {
                       minWidth: double.infinity,
                       height: ManagerHeight.h40,
                       child: Text(
-                        ManagerStrings.getStartedButton,
+                        ManagerStrings.getStartButton,
                         style: getRegularTextStyle(
                             fontSize: ManagerFontSize.s14,
                             color: ManagerColors.white),
