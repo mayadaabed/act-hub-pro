@@ -11,9 +11,16 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Future.delayed(const Duration(seconds: Constants.splashDuration), () {
+    Future.delayed(
+        const Duration(
+          seconds: Constants.splashDuration,
+        ), () {
       if (_appSettingsSharedPreferences.getOutBoardingViewed()) {
-        Get.offAllNamed(Routes.loginView);
+         if (_appSettingsSharedPreferences.loggedIn()) {
+          Get.offAllNamed(Routes.homeView);
+        } else {
+          Get.offAllNamed(Routes.loginView);
+        }
       } else {
         Get.offAllNamed(
           Routes.outBoardingView,
