@@ -8,14 +8,19 @@ import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
-
+import '../../../../config/constants.dart';
+import '../../../../core/extentions/extentions.dart';
 import '../../../../core/resources/manager_strings.dart';
+import '../../../../core/storage/local/app_settings_shared_preferences.dart';
+import '../../../../routes/routes.dart';
 
 class LoginController extends GetxController {
   late TextEditingController email = TextEditingController();
   late TextEditingController password = TextEditingController();
   late final LoginUseCase _loginUseCase = instance<LoginUseCase>();
   var formKey = GlobalKey<FormState>();
+  final AppSettingsSharedPreferences _appSettingsSharedPreferences =
+      instance<AppSettingsSharedPreferences>();
 
   Future<void> login(BuildContext context) async {
     dialogRender(
@@ -51,8 +56,10 @@ class LoginController extends GetxController {
                   Get.back();
                 }),
           ));
-      print('failed');
     }, (r) {
+      _appSettingsSharedPreferences.setEmail(email.text);
+      _appSettingsSharedPreferences.setPassword(password.text);
+      _appSettingsSharedPreferences.setToken(r.token.onNull());
       Get.back();
       dialogRender(
         context: context,
@@ -80,7 +87,9 @@ class LoginController extends GetxController {
         ),
         retryAction: () {},
       );
-      print('success');
+      Future.delayed(const Duration(seconds: Constants.loginTimer), () {
+        Get.offAllNamed(Routes.homeView);
+      });
     });
   }
 }
