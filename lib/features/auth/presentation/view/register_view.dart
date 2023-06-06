@@ -9,7 +9,7 @@ import '../../../../core/validator/validator.dart';
 import '../../../../core/widgets/base_text_form_feild.dart';
 import '../../../../core/widgets/main_button.dart';
 import '../../../../routes/routes.dart';
-import '../controller/Register_controller.dart';
+import '../controller/register_controller.dart';
 import '../widget/auth_view.dart';
 
 class RegisterView extends StatelessWidget {
