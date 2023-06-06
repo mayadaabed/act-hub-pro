@@ -3,6 +3,7 @@ import 'package:retrofit/http.dart';
 import '../../config/constants.dart';
 import '../../config/request_constants.dart';
 import '../../features/auth/data/response/login_response.dart';
+import '../../features/auth/data/response/register_response.dart';
 
 part 'app_api.g.dart';
 
@@ -16,4 +17,13 @@ abstract class AppApi {
   @POST(RequestConstants.login)
   Future<LoginResponse> login(
       @Field(ApiConstants.email) email, @Field(ApiConstants.password) password);
+
+  @POST(RequestConstants.register)
+  Future<RegisterResponse> register(
+    @Field(ApiConstants.name) name,
+    @Field(ApiConstants.email) email,
+    @Field(ApiConstants.password) password,
+    @Field(ApiConstants.passwordConfirmation) passwordConfirmation,
+    @Field(ApiConstants.phone) phone,
+  );
 }
