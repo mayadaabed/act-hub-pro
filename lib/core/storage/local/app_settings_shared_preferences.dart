@@ -23,7 +23,6 @@ class AppSettingsSharedPreferences {
   }
 
   Future<void> setToken(String token) async {
-        await setLoggedIn();
     await _sharedPreferences.setString(ConstantsPrefsKeys.token, token);
   }
 
@@ -47,13 +46,14 @@ class AppSettingsSharedPreferences {
     return _sharedPreferences.getString(ConstantsPrefsKeys.password).onNull();
   }
 
-Future<void> setLoggedIn() async {
+  Future<void> setLoggedIn() async {
     await _sharedPreferences.setBool(ConstantsPrefsKeys.loggedIn, true);
   }
 
   bool loggedIn() {
     return _sharedPreferences.getBool(ConstantsPrefsKeys.loggedIn).onNull();
   }
+
   void clear() {
     _sharedPreferences.clear();
   }
