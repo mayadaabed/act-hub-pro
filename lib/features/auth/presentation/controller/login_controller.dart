@@ -1,9 +1,5 @@
 import 'package:act_hub_project/config/dependency_injection.dart';
-import 'package:act_hub_project/core/resources/manager_colors.dart';
-import 'package:act_hub_project/core/resources/manager_fonts.dart';
 import 'package:act_hub_project/core/resources/manager_sizes.dart';
-import 'package:act_hub_project/core/resources/manager_styles.dart';
-import 'package:act_hub_project/core/widgets/main_button.dart';
 import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
@@ -12,6 +8,7 @@ import '../../../../config/constants.dart';
 import '../../../../core/extentions/extentions.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/storage/local/app_settings_shared_preferences.dart';
+import '../../../../core/widgets/dialog_button.dart';
 import '../../../../routes/routes.dart';
 
 class LoginController extends GetxController {
@@ -41,21 +38,13 @@ class LoginController extends GetxController {
           stateRenderType: StateRenderType.popUpErrorState,
           title: '',
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
-            child: mainButton(
-                height: ManagerHeight.h40,
-                color: ManagerColors.primaryColor,
-                child: Text(
-                  ManagerStrings.ok,
-                  style: getMediumTextStyle(
-                    fontSize: ManagerFontSize.s16,
-                    color: ManagerColors.white,
-                  ),
-                ),
+              padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
+              child: dialogButton(
                 onPressed: () {
                   Get.back();
-                }),
-          ));
+                },
+                message: ManagerStrings.ok,
+              )));
     }, (r) {
       _appSettingsSharedPreferences.setEmail(email.text);
       _appSettingsSharedPreferences.setPassword(password.text);
@@ -67,24 +56,14 @@ class LoginController extends GetxController {
         message: ManagerStrings.thanks,
         title: '',
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: ManagerWidth.w65,
-          ),
-          child: mainButton(
-            child: Text(
-              ManagerStrings.ok,
-              style: getMediumTextStyle(
-                fontSize: ManagerFontSize.s16,
-                color: ManagerColors.white,
-              ),
+            padding: EdgeInsets.symmetric(
+              horizontal: ManagerWidth.w65,
             ),
-            onPressed: () {
-              Get.back();
-            },
-            color: ManagerColors.primaryColor,
-            height: ManagerHeight.h40,
-          ),
-        ),
+            child: dialogButton(
+                message: ManagerStrings.ok,
+                onPressed: () {
+                  Get.back();
+                })),
         retryAction: () {},
       );
       Future.delayed(const Duration(seconds: Constants.loginTimer), () {
