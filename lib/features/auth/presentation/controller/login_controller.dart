@@ -19,6 +19,19 @@ class LoginController extends GetxController {
   final AppSettingsSharedPreferences _appSettingsSharedPreferences =
       instance<AppSettingsSharedPreferences>();
 
+  bool rememberMe = false;
+
+  changeRememberMe(bool status) {
+    rememberMe = status;
+    update();
+  }
+
+  void performLogin(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      login(context);
+    }
+  }
+
   Future<void> login(BuildContext context) async {
     dialogRender(
       context: context,
@@ -46,8 +59,11 @@ class LoginController extends GetxController {
                 message: ManagerStrings.ok,
               )));
     }, (r) {
-      _appSettingsSharedPreferences.setEmail(email.text);
-      _appSettingsSharedPreferences.setPassword(password.text);
+      if (rememberMe) {
+        _appSettingsSharedPreferences.setEmail(email.text);
+        _appSettingsSharedPreferences.setPassword(password.text);
+        _appSettingsSharedPreferences.setLoggedIn();
+      }
       _appSettingsSharedPreferences.setToken(r.token.onNull());
       Get.back();
       dialogRender(
