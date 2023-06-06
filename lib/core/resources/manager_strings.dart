@@ -1,5 +1,5 @@
 class ManagerStrings {
-   static const String actHub = 'ActHub';
+  static const String actHub = 'ActHub';
   static const String noRoutFound = 'No Rout Found';
   static const String skip = 'Skip';
   static const String outBoardingTitle1 = 'Find your cozy working space 1';
@@ -33,5 +33,7 @@ class ManagerStrings {
   static const String signIn = 'Sign In';
   static const String forgotPassword = 'Forgot Password ?';
   static const String rememberMe = 'Remember me';
-  static const String agreePolicy = 'I agree to our Terms of service and Privacy policy';
+  static const String agreePolicy =
+      'I agree to our Terms of service and Privacy policy';
+  static const String shouldAgreePolicy = '';
 }
