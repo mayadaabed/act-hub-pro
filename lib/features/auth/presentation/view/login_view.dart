@@ -1,6 +1,7 @@
 import 'package:act_hub_project/core/resources/manager_colors.dart';
 import 'package:act_hub_project/core/resources/manager_sizes.dart';
 import 'package:act_hub_project/core/resources/manager_styles.dart';
+import 'package:act_hub_project/core/widgets/custome_check_box.dart';
 import 'package:act_hub_project/features/auth/presentation/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,13 +57,11 @@ class LoginView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Checkbox(
-                          value: true,
-                          onChanged: (value) {},
-                          activeColor: ManagerColors.primaryColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(ManagerRadius.r4)),
+                        customCheckBox(
+                          state: controller.rememberMe,
+                          onChanged: (status) {
+                            controller.changeRememberMe(status!);
+                          },
                         ),
                         Text(
                           ManagerStrings.rememberMe,
