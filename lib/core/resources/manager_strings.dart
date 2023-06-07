@@ -35,5 +35,5 @@ class ManagerStrings {
   static const String rememberMe = 'Remember me';
   static const String agreePolicy =
       'I agree to our Terms of service and Privacy policy';
-  static const String shouldAgreePolicy = '';
+  static const String shouldAgreePolicy = 'Should Agree Terms and Policies';
 }
