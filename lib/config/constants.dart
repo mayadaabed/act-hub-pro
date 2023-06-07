@@ -36,4 +36,8 @@ class ApiConstants {
   static const String acceptLanguage = 'Accept-Language';
   static const String english = 'en';
   static const String arabic = 'ar';
+  static const String passwordConfirmation = 'password_confirmation';
+  static const String phone = 'phone';
+  static const String name = 'name';
+  static const String status = 'status';
 }

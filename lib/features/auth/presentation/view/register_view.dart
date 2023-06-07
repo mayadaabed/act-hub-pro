@@ -7,9 +7,10 @@ import '../../../../core/resources/manager_fonts.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/validator/validator.dart';
 import '../../../../core/widgets/base_text_form_feild.dart';
+import '../../../../core/widgets/custome_check_box.dart';
 import '../../../../core/widgets/main_button.dart';
 import '../../../../routes/routes.dart';
-import '../controller/Register_controller.dart';
+import '../controller/register_controller.dart';
 import '../widget/auth_view.dart';
 
 class RegisterView extends StatelessWidget {
@@ -83,14 +84,11 @@ class RegisterView extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Checkbox(
-                        value: true,
-                        onChanged: (value) {},
-                        activeColor: ManagerColors.primaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(ManagerRadius.r4)),
-                      ),
+                      customCheckBox(
+                          state: controller.isAgreementPolicy,
+                          onChanged: (state) {
+                            controller.performRegister(context);
+                          }),
                       Text(
                         ManagerStrings.agreePolicy,
                         style: getRegularTextStyle(
