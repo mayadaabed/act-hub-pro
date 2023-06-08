@@ -8,6 +8,7 @@ import '../../../../core/widgets/will_pop_scope.dart';
 import '../controller/home_controller.dart';
 import '../widgets/custom_banner.dart';
 import '../widgets/custom_category.dart';
+import '../widgets/custom_course.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/home_app_bar.dart';
 
@@ -16,7 +17,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return willPopScope(
+    return willPopScope(
       child: Scaffold(
         appBar: homeAppBar(),
         body: GetBuilder<HomeController>(
@@ -64,10 +65,10 @@ class HomeView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
-                          // CustomCourse(
-                          //   index: index,
-                          //   onTap: () => Get.to(() => CourseDescriptionView(index: index + 1)),
-                          // ),
+                          CustomCourse(
+                            index: index,
+                            // onTap: () => Get.to(() => CourseDescriptionView(index: index + 1)),
+                          ),
                           Divider(
                             indent: ManagerWidth.w14,
                             endIndent: ManagerWidth.w14,
