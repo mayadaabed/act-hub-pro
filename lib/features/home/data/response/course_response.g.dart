@@ -11,10 +11,10 @@ CourseResponse _$CourseResponseFromJson(Map<String, dynamic> json) =>
       ..id = json['id'] as int?
       ..isRated = json['isRated'] as bool?
       ..userRate = (json['user_rate'] as num?)?.toDouble()
-      ..attributes = (json['attributes'] as List<dynamic>?)
-          ?.map((e) =>
-              AttributeCourseResponse.fromJson(e as Map<String, dynamic>))
-          .toList();
+      ..attributes = json['attributes'] == null
+          ? null
+          : AttributeCourseResponse.fromJson(
+              json['attributes'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$CourseResponseToJson(CourseResponse instance) =>
     <String, dynamic>{

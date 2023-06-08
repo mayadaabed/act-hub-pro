@@ -125,6 +125,7 @@ class ManagerSize {
 class ManagerOpacity {
   static double op0_2 = 0.2;
   static double op0_4 = 0.4;
+  static double op0_5 = 0.5;
   static double op0_6 = 0.6;
 }
 

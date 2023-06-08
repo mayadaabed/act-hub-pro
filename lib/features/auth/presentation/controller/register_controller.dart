@@ -29,21 +29,21 @@ class RegisterController extends GetxController {
     if (formKey.currentState!.validate()) {
       if (isAgreementPolicy) {
         register(context);
-      }else{
+      } else {
         dialogRender(
-          context: context,
-          message: ManagerStrings.shouldAgreePolicy,
-          retryAction: null,
-          stateRenderType: StateRenderType.popUpErrorState,
-          title: '',
-          child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
-              child: dialogButton(
-                onPressed: () {
-                  Get.back();
-                },
-                message: ManagerStrings.ok,
-              )));
+            context: context,
+            message: ManagerStrings.shouldAgreePolicy,
+            retryAction: null,
+            stateRenderType: StateRenderType.popUpErrorState,
+            title: '',
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
+                child: dialogButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  message: ManagerStrings.ok,
+                )));
       }
     }
   }
@@ -96,7 +96,7 @@ class RegisterController extends GetxController {
         retryAction: () {},
       );
       Future.delayed(const Duration(seconds: Constants.loginTimer), () {
-        Get.offAllNamed(Routes.homeView);
+        Get.offAllNamed(Routes.mainView);
       });
     });
   }

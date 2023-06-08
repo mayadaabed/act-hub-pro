@@ -16,8 +16,8 @@ class SplashController extends GetxController {
           seconds: Constants.splashDuration,
         ), () {
       if (_appSettingsSharedPreferences.getOutBoardingViewed()) {
-         if (_appSettingsSharedPreferences.loggedIn()) {
-          Get.offAllNamed(Routes.homeView);
+        if (_appSettingsSharedPreferences.loggedIn()) {
+          Get.offAllNamed(Routes.mainView);
         } else {
           Get.offAllNamed(Routes.loginView);
         }
