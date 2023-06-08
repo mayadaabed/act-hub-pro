@@ -4,3 +4,7 @@ import 'package:dartz/dartz.dart';
 abstract class BaseUseCase<In, Out> {
   Future<Either<Fauiler, Out>> execute(In input);
 }
+
+abstract class BaseOutUsecase<Out> {
+  Future<Either<Fauiler, Out>> execute();
+}
