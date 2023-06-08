@@ -6,6 +6,7 @@ import 'package:act_hub_project/features/auth/domain/repository/login_repository
 import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
 import 'package:act_hub_project/features/auth/domain/use_case/register_use_case.dart';
 import 'package:act_hub_project/features/auth/presentation/controller/login_controller.dart';
+import 'package:act_hub_project/features/home/presentation/controller/home_controller.dart';
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
@@ -21,6 +22,10 @@ import '../features/auth/data/data_source/remote_register_data_source.dart';
 import '../features/auth/data/repository_impl/register_repository_impl.dart';
 import '../features/auth/domain/repository/register_repository.dart';
 import '../features/auth/presentation/controller/register_controller.dart';
+import '../features/home/data/data_source/remote_home_data_source.dart';
+import '../features/home/data/repository_implementation/home_repository_implementation.dart';
+import '../features/home/domain/repository/home_repository.dart';
+import '../features/home/domain/use_case/home_use_case.dart';
 import '../features/main/presentation/controller/main_controller.dart';
 
 final instance = GetIt.instance;
@@ -165,4 +170,34 @@ disposeRegisterModule() {
 
 initMainModule() {
   Get.put<MainController>(MainController());
+  initHomeModule();
+}
+
+initHomeModule() {
+  if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
+    instance.registerLazySingleton<RemoteHomeDataSource>(
+      () => RemoteHomeDataSourceImpl(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<HomeRepository>()) {
+    instance.registerLazySingleton<HomeRepository>(
+      () => HomeRepositoryImplementation(
+        instance<RemoteHomeDataSource>(),
+        instance<NetworkInfo>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<HomeUseCase>()) {
+    instance.registerLazySingleton<HomeUseCase>(
+      () => HomeUseCase(
+        instance<HomeRepository>(),
+      ),
+    );
+  }
+
+  Get.put<HomeController>(HomeController());
 }
