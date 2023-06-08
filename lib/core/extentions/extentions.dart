@@ -11,6 +11,16 @@ extension NonNullString on String? {
   }
 }
 
+extension NonNullInt on int? {
+  int onNull() {
+    if (this == null) {
+      return 0;
+    } else {
+      return this!;
+    }
+  }
+}
+
 extension NonNullDouble on double? {
   double onNull() {
     if (this == null) {
@@ -30,7 +40,6 @@ extension NonNullBoolean on bool? {
     }
   }
 }
-
 
 extension NonNullColor on Color? {
   Color onNull() {
