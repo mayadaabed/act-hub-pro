@@ -10,6 +10,8 @@ class Constants {
   static const int loginSecondPartFlex = 3;
   static const int loginTimer = 3;
   static const double getStateWidgetRenderStateElevation = 3;
+  static const int codeVerificationMaxLine = 1;
+  static const double arrowBackButtonElevation = 0;
 }
 
 class ConstantsPrefsKeys {
@@ -40,4 +42,6 @@ class ApiConstants {
   static const String phone = 'phone';
   static const String name = 'name';
   static const String status = 'status';
+  static const String verificationEmail = 'email';
+  static const String otp = 'otp';
 }
