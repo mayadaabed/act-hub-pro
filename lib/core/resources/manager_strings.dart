@@ -36,4 +36,10 @@ class ManagerStrings {
   static const String agreePolicy =
       'I agree to our Terms of service and Privacy policy';
   static const String shouldAgreePolicy = 'Should Agree Terms and Policies';
+  static const String design = 'DESIGN';
+  static const String rate = '4,8/5';
+  static const String categories = 'Categories';
+  static const String seeAll = 'See All';
+  static const String viewAll = 'View All';
+  static const String popularCourses = 'Popular Courses';
 }
