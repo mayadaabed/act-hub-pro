@@ -21,6 +21,7 @@ import '../features/auth/data/data_source/remote_register_data_source.dart';
 import '../features/auth/data/repository_impl/register_repository_impl.dart';
 import '../features/auth/domain/repository/register_repository.dart';
 import '../features/auth/presentation/controller/register_controller.dart';
+import '../features/main/presentation/controller/main_controller.dart';
 
 final instance = GetIt.instance;
 
@@ -160,4 +161,8 @@ disposeRegisterModule() {
   }
 
   Get.delete<RegisterController>();
+}
+
+initMainModule() {
+  Get.put<MainController>(MainController());
 }
