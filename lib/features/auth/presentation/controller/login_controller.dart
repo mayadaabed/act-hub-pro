@@ -83,7 +83,7 @@ class LoginController extends GetxController {
         retryAction: () {},
       );
       Future.delayed(const Duration(seconds: Constants.loginTimer), () {
-        Get.offAllNamed(Routes.homeView);
+        Get.offAllNamed(Routes.mainView);
       });
     });
   }
