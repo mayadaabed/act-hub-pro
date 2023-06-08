@@ -50,4 +50,11 @@ class FailedValidator {
 
     return null;
   }
+
+  String? validateCode(value) {
+    if (value == null || value.trim().isEmpty) {
+      return ManagerStrings.invalidEmptyCode;
+    }
+    return null;
+  }
 }

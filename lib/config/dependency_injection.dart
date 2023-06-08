@@ -27,6 +27,11 @@ import '../features/home/data/repository_implementation/home_repository_implemen
 import '../features/home/domain/repository/home_repository.dart';
 import '../features/home/domain/use_case/home_use_case.dart';
 import '../features/main/presentation/controller/main_controller.dart';
+import '../features/verification/data/data_source/remote_verification_data_source.dart';
+import '../features/verification/data/repository_implementation/verification_repositroy_impl.dart';
+import '../features/verification/domain/repository/verification_repository.dart';
+import '../features/verification/domain/use_case/verification_use_case.dart';
+import '../features/verification/presentation/controller/verification_controller.dart';
 
 final instance = GetIt.instance;
 
@@ -41,6 +46,11 @@ initModule() async {
 
   instance.registerLazySingleton<AppSettingsSharedPreferences>(
       () => AppSettingsSharedPreferences(instance()));
+
+  // TODO: ONLY FOR TEST
+  // AppSettingsSharedPreferences appSettingsSharedPreferences =
+  //     instance<AppSettingsSharedPreferences>();
+  // appSettingsSharedPreferences.clear();
 
   instance.registerLazySingleton(() => DioFactory());
 
@@ -200,4 +210,33 @@ initHomeModule() {
   }
 
   Get.put<HomeController>(HomeController());
+}
+
+initVerificationModule() {
+  if (!GetIt.I.isRegistered<RemoteVerificationDataSource>()) {
+    instance.registerLazySingleton<RemoteVerificationDataSource>(
+      () => RemoteVerificationDataSourceImpl(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<VerificationRepository>()) {
+    instance.registerLazySingleton<VerificationRepository>(
+      () => VerificationRepositoryImpl(
+        instance<NetworkInfo>(),
+        instance<RemoteVerificationDataSource>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<VerificationUseCase>()) {
+    instance.registerLazySingleton<VerificationUseCase>(
+      () => VerificationUseCase(
+        instance<VerificationRepository>(),
+      ),
+    );
+  }
+
+  Get.put<VerificationController>(VerificationController());
 }

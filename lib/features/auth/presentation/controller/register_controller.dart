@@ -3,7 +3,7 @@ import 'package:act_hub_project/features/auth/domain/use_case/register_use_case.
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
-import '../../../../config/constants.dart';
+import '../../../../core/cache/cache.dart';
 import '../../../../core/resources/manager_sizes.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/widgets/dialog_button.dart';
@@ -28,14 +28,13 @@ class RegisterController extends GetxController {
   void performRegister(BuildContext context) {
     if (formKey.currentState!.validate()) {
       if (isAgreementPolicy) {
-        register(context);
+        _register(context);
       } else {
         dialogRender(
             context: context,
             message: ManagerStrings.shouldAgreePolicy,
-            retryAction: null,
             stateRenderType: StateRenderType.popUpErrorState,
-            title: '',
+            title: ManagerStrings.error,
             child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
                 child: dialogButton(
@@ -48,56 +47,59 @@ class RegisterController extends GetxController {
     }
   }
 
-  Future<void> register(BuildContext context) async {
+  Future<void> _register(BuildContext context) async {
+    CacheData cacheData = CacheData();
+    cacheData.setEmail(email.text);
     dialogRender(
       context: context,
-      message: ManagerStrings.loading,
-      retryAction: null,
       stateRenderType: StateRenderType.popUpLoadingState,
+      message: ManagerStrings.loading,
       title: '',
     );
-    (await _registerUseCase.execute(RegisterUseCaseInput(
-            name: fullName.text,
-            email: email.text,
-            password: password.text,
-            confirmationPassword: confirmPassword.text,
-            phone: phone.text)))
+    (await _registerUseCase.execute(
+      RegisterUseCaseInput(
+        name: fullName.text,
+        email: email.text,
+        password: password.text,
+        confirmationPassword: confirmPassword.text,
+        phone: phone.text,
+      ),
+    ))
         .fold((l) {
       dialogRender(
-          context: context,
-          message: l.message,
-          retryAction: null,
-          stateRenderType: StateRenderType.popUpErrorState,
-          title: '',
-          child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
-              child: dialogButton(
-                onPressed: () {
-                  Get.back();
-                },
-                message: ManagerStrings.ok,
-              )));
+        context: context,
+        stateRenderType: StateRenderType.popUpErrorState,
+        message: l.message,
+        title: '',
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: ManagerWidth.w65,
+          ),
+          child: dialogButton(
+              message: ManagerStrings.ok,
+              onPressed: () {
+                Get.back();
+              }),
+        ),
+      );
     }, (r) {
-      Get.back();
       dialogRender(
         context: context,
         stateRenderType: StateRenderType.popUpSuccessState,
         message: ManagerStrings.thanks,
         title: '',
         child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: ManagerWidth.w65,
-            ),
-            child: dialogButton(
-                message: ManagerStrings.ok,
-                onPressed: () {
-                  Get.back();
-                })),
-        retryAction: () {},
+          padding: EdgeInsets.symmetric(
+            horizontal: ManagerWidth.w65,
+          ),
+          child: dialogButton(
+            onPressed: () {
+              Get.offAllNamed(Routes.verificationView);
+            },
+            message: ManagerStrings.thanks,
+          ),
+        ),
       );
-      Future.delayed(const Duration(seconds: Constants.loginTimer), () {
-        Get.offAllNamed(Routes.mainView);
-      });
     });
   }
 }

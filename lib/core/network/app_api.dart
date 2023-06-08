@@ -5,6 +5,7 @@ import '../../config/request_constants.dart';
 import '../../features/auth/data/response/login_response.dart';
 import '../../features/auth/data/response/register_response.dart';
 import '../../features/home/data/response/home_response.dart';
+import '../../features/verification/data/response/verification_response.dart';
 
 part 'app_api.g.dart';
 
@@ -30,4 +31,10 @@ abstract class AppApi {
 
   @GET(RequestConstants.home)
   Future<HomeResponse> home();
+
+  @POST(RequestConstants.emailVerification)
+  Future<VerificationResponse> emailVerification(
+    @Field(ApiConstants.verificationEmail) email,
+    @Field(ApiConstants.otp) otp,
+  );
 }

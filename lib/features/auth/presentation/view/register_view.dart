@@ -86,8 +86,8 @@ class RegisterView extends StatelessWidget {
                     children: [
                       customCheckBox(
                           state: controller.isAgreementPolicy,
-                          onChanged: (state) {
-                            controller.performRegister(context);
+                          onChanged: (status) {
+                            controller.changePolicyStatus(status!);
                           }),
                       Text(
                         ManagerStrings.agreePolicy,
@@ -112,7 +112,7 @@ class RegisterView extends StatelessWidget {
                       height: ManagerHeight.h40,
                       onPressed: () {
                         if (controller.formKey.currentState!.validate()) {
-                          controller.register(context);
+                          controller.performRegister(context);
                         }
                       }),
                   Row(
