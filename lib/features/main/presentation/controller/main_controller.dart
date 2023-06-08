@@ -5,6 +5,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../../core/resources/manager_assets.dart';
 import '../../../../core/resources/manager_colors.dart';
 import '../../../../core/resources/manager_sizes.dart';
+import '../../../home/presentation/view/home_view.dart';
 
 class MainController extends GetxController {
   PersistentTabController persistentTabController =
@@ -12,10 +13,10 @@ class MainController extends GetxController {
 
   Color color = ManagerColors.black;
   List<Widget> screens = [
-    // HomeView(),
-    Container(
-      color: Colors.red,
-    ),
+    HomeView(),
+    // Container(
+    //   color: Colors.red,
+    // ),
     Container(
       color: Colors.green,
     ),
