@@ -12,7 +12,7 @@ class CourseResponse {
   @JsonKey(name: 'user_rate')
   double? userRate;
   @JsonKey(name: 'attributes')
-  List<AttributeCourseResponse>? attributes;
+  AttributeCourseResponse? attributes;
 
    CourseResponse({
     this.id,

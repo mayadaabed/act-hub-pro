@@ -4,7 +4,7 @@ class CourseModel {
   int? id;
   bool? isRated;
   double? userRate;
-  List<AttributeCourseModel>? attributes;
+  AttributeCourseModel? attributes;
 
   CourseModel({
     this.id,
