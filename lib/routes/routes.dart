@@ -8,6 +8,7 @@ import '../features/auth/presentation/view/register_view.dart';
 import '../features/home/presentation/view/home_view.dart';
 import '../features/main/presentation/view/main_view.dart';
 import '../features/splash/presentation/view/splash_view.dart';
+import '../features/verification/presentation/view/verification_view.dart';
 
 class Routes {
   static const String splashView = '/splash_view';
@@ -16,6 +17,7 @@ class Routes {
   static const String homeView = '/home_view';
   static const String registerView = '/register_view';
   static const String mainView = '/main_view';
+  static const String verificationView = '/verification_view';
 }
 
 class RouteGenerator {
@@ -35,10 +37,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => RegisterView());
       case Routes.mainView:
         initMainModule();
-        return MaterialPageRoute(builder: (_) => const MainView());  
+        return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.homeView:
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const HomeView());
+      case Routes.verificationView:
+        initVerificationModule();
+        return MaterialPageRoute(builder: (_) => const VerificationView());
       default:
         return undefinedRoute();
     }
