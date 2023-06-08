@@ -35,4 +35,7 @@ class ManagerColors {
   static const Color disabledColor = Colors.grey;
   static const Color transparent = Colors.transparent;
   static const Color iconColor = Colors.white;
+  static const Color enabledBorderInputVerification = Color(0xFFF0F0F0);
+  static const Color focusedBorderInputVerification = primaryColor;
+  static const Color fillInputVerification = Color(0xffF0F0F0);
 }
