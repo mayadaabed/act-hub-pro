@@ -75,6 +75,7 @@ class ManagerHeight {
   static double h30 = SizeUtil.setHeight(30.0);
   static double h39 = SizeUtil.setHeight(39.0);
   static double h40 = SizeUtil.setHeight(40.0);
+  static double h44 = SizeUtil.setHeight(44.0);
   static double h48 = SizeUtil.setHeight(48.0);
   static double h50 = SizeUtil.setHeight(50.0);
   static double h60 = SizeUtil.setHeight(60.0);
@@ -95,6 +96,7 @@ class ManagerHeight {
   static double h375 = SizeUtil.setHeight(375.0);
   static double h400 = SizeUtil.setHeight(400.0);
   static double h460 = SizeUtil.setHeight(460.0);
+  static double h490 = SizeUtil.setHeight(490.0);
   static double h500 = SizeUtil.setHeight(530.0);
   static double h575 = SizeUtil.setHeight(575.0);
 }
@@ -124,6 +126,7 @@ class ManagerSize {
 
 class ManagerOpacity {
   static double op0_2 = 0.2;
+  static double op0_3 = 0.3;
   static double op0_4 = 0.4;
   static double op0_5 = 0.5;
   static double op0_6 = 0.6;
@@ -136,4 +139,9 @@ class ManagerIconSize {
   static double s8 = 8;
   static double s10 = 10;
   static double s24 = 24;
+}
+
+class ConstantSize {
+  static double s5 = 5;
+  static double s2 = 5;
 }
