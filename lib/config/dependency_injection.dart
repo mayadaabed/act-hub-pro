@@ -22,14 +22,28 @@ import '../features/auth/data/data_source/remote_register_data_source.dart';
 import '../features/auth/data/repository_impl/register_repository_impl.dart';
 import '../features/auth/domain/repository/register_repository.dart';
 import '../features/auth/presentation/controller/register_controller.dart';
+import '../features/forget_password/data/data_source/forget_password_remote_data_source.dart';
+import '../features/forget_password/data/repository_implementation/forget_password_repository_impl.dart';
+import '../features/forget_password/domain/repository/forget_password_repository.dart';
+import '../features/forget_password/domain/use_case/forget_password_use_case.dart';
+import '../features/forget_password/presentation/controller/forget_password_controller.dart';
 import '../features/home/data/data_source/remote_home_data_source.dart';
 import '../features/home/data/repository_implementation/home_repository_implementation.dart';
 import '../features/home/domain/repository/home_repository.dart';
 import '../features/home/domain/use_case/home_use_case.dart';
 import '../features/main/presentation/controller/main_controller.dart';
+import '../features/reset_password/data/data_source/reset_password_remote_data_source.dart';
+import '../features/reset_password/data/repository_implementation/reset_password_repository_impl.dart';
+import '../features/reset_password/domain/repository/reset_password_repository.dart';
+import '../features/reset_password/domain/use_case/reset_password_use_case.dart';
+import '../features/reset_password/presentation/controller/reset_password_controller.dart';
 import '../features/verification/data/data_source/remote_verification_data_source.dart';
+import '../features/verification/data/data_source/send_otp_remote_data_source.dart';
+import '../features/verification/data/repository_implementation/send_otp_repository_impl.dart';
 import '../features/verification/data/repository_implementation/verification_repositroy_impl.dart';
+import '../features/verification/domain/repository/send_otp_repository.dart';
 import '../features/verification/domain/repository/verification_repository.dart';
+import '../features/verification/domain/use_case/send_otp_use_case.dart';
 import '../features/verification/domain/use_case/verification_use_case.dart';
 import '../features/verification/presentation/controller/verification_controller.dart';
 
@@ -47,7 +61,7 @@ initModule() async {
   instance.registerLazySingleton<AppSettingsSharedPreferences>(
       () => AppSettingsSharedPreferences(instance()));
 
-  // TODO: ONLY FOR TEST
+  // // TODO: ONLY FOR TEST
   // AppSettingsSharedPreferences appSettingsSharedPreferences =
   //     instance<AppSettingsSharedPreferences>();
   // appSettingsSharedPreferences.clear();
@@ -86,6 +100,7 @@ initLoginModule() {
   disposeSplash();
   disposeOutBoarding();
   disposeRegisterModule();
+  initVerificationModule();
 
   if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.registerLazySingleton<RemoteLoginDataSource>(
@@ -213,6 +228,7 @@ initHomeModule() {
 }
 
 initVerificationModule() {
+  initSendOtp();
   if (!GetIt.I.isRegistered<RemoteVerificationDataSource>()) {
     instance.registerLazySingleton<RemoteVerificationDataSource>(
       () => RemoteVerificationDataSourceImpl(
@@ -239,4 +255,117 @@ initVerificationModule() {
   }
 
   Get.put<VerificationController>(VerificationController());
+}
+
+initForgetPassword() async {
+  disposeLoginModule();
+  initSendOtp();
+
+  if (!GetIt.I.isRegistered<ForgetPasswordDataSource>()) {
+    instance.registerLazySingleton<ForgetPasswordDataSource>(
+        () => RemoteForgetPasswordDataSourceImpl(instance<AppApi>()));
+  }
+
+  if (!GetIt.I.isRegistered<ForgetPasswordRepository>()) {
+    instance.registerLazySingleton<ForgetPasswordRepository>(
+        () => ForgetPasswordRepositoryImpl(instance(), instance()));
+  }
+
+  if (!GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
+    instance.registerFactory<ForgetPasswordUseCase>(
+        () => ForgetPasswordUseCase(instance<ForgetPasswordRepository>()));
+  }
+
+  Get.put<ForgetPasswordController>(ForgetPasswordController());
+}
+
+disposeForgetPassword() async {
+  if (GetIt.I.isRegistered<ForgetPasswordDataSource>()) {
+    instance.unregister<ForgetPasswordDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<ForgetPasswordRepository>()) {
+    instance.unregister<ForgetPasswordRepository>();
+  }
+
+  if (GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
+    instance.unregister<ForgetPasswordUseCase>();
+  }
+}
+
+initResetPasswordModule() {
+  if (!GetIt.I.isRegistered<ResetPasswordRemoteDataSource>()) {
+    instance.registerLazySingleton<ResetPasswordRemoteDataSource>(
+      () => RemoteResetPasswordRemoteDataSourceImpl(
+        instance<AppApi>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ResetPasswordRepository>()) {
+    instance.registerLazySingleton<ResetPasswordRepository>(
+      () => ResetPasswordRepositoryImpl(
+        instance<NetworkInfo>(),
+        instance<ResetPasswordRemoteDataSource>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<ResetPasswordUseCase>()) {
+    instance.registerLazySingleton<ResetPasswordUseCase>(
+      () => ResetPasswordUseCase(
+        instance<ResetPasswordRepository>(),
+      ),
+    );
+  }
+
+  Get.put<ResetPasswordController>(ResetPasswordController());
+}
+
+disposeResetPasswordModule() {
+  disposeForgetPassword();
+  if (GetIt.I.isRegistered<ResetPasswordRemoteDataSource>()) {
+    instance.unregister<ResetPasswordRemoteDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<ResetPasswordRepository>()) {
+    instance.unregister<ResetPasswordRepository>();
+  }
+
+  if (GetIt.I.isRegistered<ResetPasswordUseCase>()) {
+    instance.unregister<ResetPasswordUseCase>();
+  }
+
+  Get.delete<ResetPasswordController>();
+}
+
+initSendOtp() async {
+  if (!GetIt.I.isRegistered<RemoteSendOtpDataSource>()) {
+    instance.registerLazySingleton<RemoteSendOtpDataSource>(
+        () => RemoteSendOtpDataSourceImpl(instance<AppApi>()));
+  }
+
+  if (!GetIt.I.isRegistered<SendOtpRepository>()) {
+    instance.registerLazySingleton<SendOtpRepository>(
+        () => SendOtpRepositoryImpl(instance(), instance()));
+  }
+
+  if (!GetIt.I.isRegistered<SendOtpUseCase>()) {
+    instance.registerFactory<SendOtpUseCase>(
+        () => SendOtpUseCase(instance<SendOtpRepository>()));
+  }
+}
+
+disposeSendOtp() async {
+  if (GetIt.I.isRegistered<RemoteSendOtpDataSource>()) {
+    instance.unregister<RemoteSendOtpDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<SendOtpRepository>()) {
+    instance.unregister<SendOtpRepository>();
+  }
+
+  if (GetIt.I.isRegistered<SendOtpUseCase>()) {
+    instance.unregister<SendOtpUseCase>();
+  }
 }
