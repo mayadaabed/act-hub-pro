@@ -92,7 +92,7 @@ class CustomCourse extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 margin: EdgeInsets.only(
                   top: ManagerHeight.h10,

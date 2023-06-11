@@ -25,7 +25,7 @@ class HomeView extends StatelessWidget {
             return ListView(
               children: [
                 SizedBox(height: ManagerHeight.h20),
-                CustomBanner(),
+                const CustomBanner(),
                 CustomText(
                   name: ManagerStrings.categories,
                   nameButton: ManagerStrings.seeAll,
@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
                     ManagerOpacity.op0_5,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: ManagerHeight.h48,
                   child: ListView.builder(
@@ -57,8 +57,8 @@ class HomeView extends StatelessWidget {
                   nameButton: ManagerStrings.viewAll,
                   buttonColor: ManagerColors.primaryColor,
                 ),
-                Container(
-                  height: ManagerHeight.h500, // Replace with the desired height
+                SizedBox(
+                  height: ManagerHeight.h500,
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.popularCourses.length,

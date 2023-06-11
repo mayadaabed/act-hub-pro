@@ -19,7 +19,7 @@ class CustomBanner extends StatelessWidget {
           carouselController: controller.carouselController,
           options: CarouselOptions(
             enlargeCenterPage: true,
-            scrollPhysics: BouncingScrollPhysics(),
+            scrollPhysics: const BouncingScrollPhysics(),
             viewportFraction: 0.85,
             autoPlay: true,
             height: ManagerHeight.h160,
@@ -38,7 +38,8 @@ class CustomBanner extends StatelessWidget {
                 image: DecorationImage(
                     image: i.attributeModel!.image!.isNotEmpty
                         ? NetworkImage(i.attributeModel!.image!.toString())
-                        : const AssetImage(ManagerAssets.banner) as ImageProvider,
+                        : const AssetImage(ManagerAssets.banner)
+                            as ImageProvider,
                     fit: BoxFit.cover),
               ),
               child: Column(
