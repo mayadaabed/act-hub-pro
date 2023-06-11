@@ -8,7 +8,7 @@ import '../features/auth/presentation/view/login_view.dart';
 import '../features/auth/presentation/view/register_view.dart';
 import '../features/home/presentation/view/home_view.dart';
 import '../features/main/presentation/view/main_view.dart';
-import '../features/reset_password/presentation/view/reset_password_controller.dart';
+import '../features/reset_password/presentation/view/reset_password_view.dart';
 import '../features/splash/presentation/view/splash_view.dart';
 import '../features/verification/presentation/view/verification_view.dart';
 
