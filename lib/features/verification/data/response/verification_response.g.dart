@@ -8,7 +8,9 @@ part of 'verification_response.dart';
 
 VerificationResponse _$VerificationResponseFromJson(
         Map<String, dynamic> json) =>
-    VerificationResponse()..status = json['status'] as bool?;
+    VerificationResponse(
+      status: json['status'] as bool?,
+    );
 
 Map<String, dynamic> _$VerificationResponseToJson(
         VerificationResponse instance) =>
