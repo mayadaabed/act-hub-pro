@@ -20,8 +20,8 @@ class Routes {
   static const String registerView = '/register_view';
   static const String mainView = '/main_view';
   static const String verificationView = '/verification_view';
-  static const String forget_password = '/forget_password_view';
-  static const String reset_password = '/reset_password';
+  static const String forgetPassword = '/forget_password_view';
+  static const String resetPassword = '/reset_password';
 }
 
 class RouteGenerator {
@@ -48,10 +48,10 @@ class RouteGenerator {
       case Routes.verificationView:
         initVerificationModule();
         return MaterialPageRoute(builder: (_) => const VerificationView());
-      case Routes.forget_password:
+      case Routes.forgetPassword:
         initForgetPassword();
         return MaterialPageRoute(builder: (_) => ForgetPasswordView());
-      case Routes.reset_password:
+      case Routes.resetPassword:
         initResetPasswordModule();
         return MaterialPageRoute(builder: (_) => ResetPasswordView());
       default:
