@@ -61,7 +61,7 @@ class ForgetPasswordController extends GetxController {
             retryAction: () {
               Get.back();
               Get.offNamed(
-                Routes.reset_password,
+                Routes.resetPassword,
               );
             });
       } else {
