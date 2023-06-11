@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
-
+import 'package:act_hub_project/core/extentions/extentions.dart';
 import '../../../../config/dependency_injection.dart';
 import '../../../../core/cache/cache.dart';
 import '../../../../core/resources/manager_sizes.dart';
@@ -9,6 +9,7 @@ import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/validator/validator.dart';
 import '../../../../core/widgets/dialog_button.dart';
 import '../../../../routes/routes.dart';
+import '../../domain/use_case/send_otp_use_case.dart';
 import '../../domain/use_case/verification_use_case.dart';
 
 class VerificationController extends GetxController {
@@ -29,6 +30,8 @@ class VerificationController extends GetxController {
   late FocusNode sixthFocusNode;
   final VerificationUseCase _verificationUseCase =
       instance<VerificationUseCase>();
+
+  final SendOtpUseCase _sendOtpUseCase = instance<SendOtpUseCase>();
 
   void verifyEmail(BuildContext context) async {
     CacheData cacheData = CacheData();
@@ -103,6 +106,31 @@ class VerificationController extends GetxController {
       stateRenderType: StateRenderType.popUpLoadingState,
       retryAction: () {},
     );
+    (await _sendOtpUseCase.execute(SendOtpInput(email: email))).fold((l) {
+      Get.back();
+      dialogRender(
+        context: context,
+        message: l.message,
+        title: ManagerStrings.error,
+        stateRenderType: StateRenderType.popUpErrorState,
+        retryAction: () {
+          Get.back();
+        },
+      );
+    }, (r) {
+      Get.back();
+      dialogRender(
+          context: context,
+          message: ManagerStrings.sendOtpSuccess,
+          title: '',
+          stateRenderType: StateRenderType.popUpSuccessState,
+          retryAction: () {
+            Get.back();
+            if (route.onNull() != '') {
+              Get.offAllNamed(route!);
+            }
+          });
+    });
   }
 
   @override
