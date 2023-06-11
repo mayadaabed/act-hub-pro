@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../config/constants.dart';
 import '../../../../core/error_handler/error_handler.dart';
 import '../../../../core/internet_checker/internet_checker.dart';
-import '../../domain/model/send_otp_mode.dart';
+import '../../domain/model/send_otp_model.dart';
 import '../../domain/repository/send_otp_repository.dart';
 import '../data_source/send_otp_remote_data_source.dart';
 import '../request/send_otp_request.dart';
