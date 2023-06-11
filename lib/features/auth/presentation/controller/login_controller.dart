@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
 import '../../../../config/constants.dart';
+import '../../../../core/cache/cache.dart';
 import '../../../../core/extentions/extentions.dart';
 import '../../../../core/resources/manager_strings.dart';
 import '../../../../core/storage/local/app_settings_shared_preferences.dart';
 import '../../../../core/widgets/dialog_button.dart';
 import '../../../../routes/routes.dart';
+import '../../../verification/presentation/controller/verification_controller.dart';
 
 class LoginController extends GetxController {
   late TextEditingController email = TextEditingController();
@@ -33,6 +35,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> login(BuildContext context) async {
+    CacheData cacheData = CacheData();
+    cacheData.setEmail(email.text);
     dialogRender(
       context: context,
       message: ManagerStrings.loading,
@@ -53,8 +57,14 @@ class LoginController extends GetxController {
           child: Padding(
               padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w65),
               child: dialogButton(
-                onPressed: () {
+                onPressed: () async {
                   Get.back();
+                   if (l.message == ManagerStrings.notVerifiedEmail) {
+                  await VerificationController().sendOtp(
+                    context: context,
+                    route: Routes.verificationView,
+                  );
+                }
                 },
                 message: ManagerStrings.ok,
               )));
