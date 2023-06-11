@@ -81,6 +81,9 @@ class LoginView extends StatelessWidget {
                         fontSize: ManagerFontSize.s14,
                         color: ManagerColors.primaryColor),
                   ),
+                  onPressed: (){
+                    Get.toNamed(Routes.forget_password);
+                  }
                 ),
                 SizedBox(height: ManagerHeight.h100),
                 mainButton(
