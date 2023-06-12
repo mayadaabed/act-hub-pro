@@ -11,6 +11,8 @@ TextFormField baseTextFormField({
   TextInputType? keyboardType,
   bool? obscureText,
   validator,
+  FocusNode? focusNode,
+  onChange,
 }) {
   return TextFormField(
     controller: controller,
@@ -47,5 +49,7 @@ TextFormField baseTextFormField({
         ),
       ),
     ),
+    focusNode: focusNode,
+    onChanged: onChange ?? (val) {},
   );
 }

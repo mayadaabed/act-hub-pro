@@ -53,4 +53,17 @@ class ManagerStrings {
   static const String invalidEmptyCode = "This field is required";
   static const String verificationSuccess =
       'The code has been verified, login now';
+  static const String sorryFailed = 'Sorry Failed';
+  static const String sendOtpSuccess = 'The code has been sent successfully';
+  static const String passwordChangeSuccess = 'Password changed successfully';
+  static const String wrongRequestSent = 'Wrong request sent';
+  static const String forgetPassword = 'Forget Password ?';
+  static const String forgetSubTitle =
+      'To reset your password, enter \n your e-mail';
+  static const String resetSubTitle =
+      'To reset your password, enter \n otp and new password';
+  static const String confirmPass = 'Confirm Password';
+  static const String confirm = 'Confirm';
+  static const String changePassword = 'Change Password';
+  static const String notVerifiedEmail = 'Your email address is not verified..';
 }

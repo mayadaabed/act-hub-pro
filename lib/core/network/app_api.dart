@@ -4,7 +4,10 @@ import '../../config/constants.dart';
 import '../../config/request_constants.dart';
 import '../../features/auth/data/response/login_response.dart';
 import '../../features/auth/data/response/register_response.dart';
+import '../../features/forget_password/data/response/forget_password_response.dart';
 import '../../features/home/data/response/home_response.dart';
+import '../../features/reset_password/data/response/reset_password_response.dart';
+import '../../features/verification/data/response/send_otp_response.dart';
 import '../../features/verification/data/response/verification_response.dart';
 
 part 'app_api.g.dart';
@@ -36,5 +39,22 @@ abstract class AppApi {
   Future<VerificationResponse> emailVerification(
     @Field(ApiConstants.verificationEmail) email,
     @Field(ApiConstants.otp) otp,
+  );
+
+  @POST(RequestConstants.forgetPasswordRequest)
+  Future<ForgetPasswordResponse> forgetPassword(
+    @Field(ApiConstants.email) String email,
+  );
+
+  @POST(RequestConstants.resetPassword)
+  Future<ResetPasswordResponse> resetPassword(
+    @Field(ApiConstants.email) email,
+    @Field(ApiConstants.password) password,
+    @Field(ApiConstants.otp) otp,
+  );
+
+  @POST(RequestConstants.sendOtp)
+  Future<SendOtpResponse> sendOtp(
+    @Field(ApiConstants.email) String email,
   );
 }
