@@ -18,7 +18,7 @@ class Constants {
   static const String notificationChannelName = 'notificationChannelName';
   static const String notificationChannelDescription =
       'notificationChannelDescription';
-  static const String notificationIconName = 'notificationIconName';
+  static const String notificationIconName = 'launch_background';
 }
 
 class ConstantsPrefsKeys {
