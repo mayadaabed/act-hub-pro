@@ -1,3 +1,4 @@
+import 'package:act_hub_project/core/storage/remote/firebase/controllers/fb_notification.dart';
 import 'package:act_hub_project/core/network/app_api.dart';
 import 'package:act_hub_project/core/network/dio_factory.dart';
 import 'package:act_hub_project/features/auth/data/data_source/remote_login_data_source.dart';
@@ -10,6 +11,8 @@ import 'package:act_hub_project/features/home/presentation/controller/home_contr
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -46,11 +49,26 @@ import '../features/verification/domain/repository/verification_repository.dart'
 import '../features/verification/domain/use_case/send_otp_use_case.dart';
 import '../features/verification/domain/use_case/verification_use_case.dart';
 import '../features/verification/presentation/controller/verification_controller.dart';
+import '../firebase_options.dart';
 
 final instance = GetIt.instance;
 
+firebaseModule() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  FbNotification fb = FbNotification();
+  await FbNotification.initNotification();
+
+  await fb.requestNotificationPermissions();
+  await fb.initializeForegroundNotificationForAndroid();
+  fb.manageNotificationAction();
+  print('object');
+  print(await FirebaseMessaging.instance.getToken());
+}
+
 initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await firebaseModule();
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
 
