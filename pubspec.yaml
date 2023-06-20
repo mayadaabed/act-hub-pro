@@ -50,6 +50,9 @@ dependencies:
   flutter_state_render_dialog: ^1.0.4
   persistent_bottom_nav_bar_v2: ^4.2.8
   carousel_slider: ^4.2.1
+  flutter_local_notifications: ^14.1.1
+  firebase_messaging: ^14.6.3
+  firebase_core: ^2.14.0
 
 dev_dependencies:
   flutter_test:
