@@ -30,7 +30,7 @@ class ConstantsPrefsKeys {
 }
 
 class ApiConstants {
-  static const String baseUrl = 'http://act-hub.actit.ps';
+  static const String baseUrl = 'https://act-hub-training.actit.ps';
   static const String authorization = 'Authorization';
   static const int sendTimeOutDuration = 120;
   static const int recieveTimeOutDuration = 120;
@@ -54,4 +54,5 @@ class ApiConstants {
   static const String accept = 'Accept';
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
+  static const String fcmToken = 'fcm_token';
 }
