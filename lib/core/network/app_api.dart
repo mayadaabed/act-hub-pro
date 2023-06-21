@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import '../../config/constants.dart';
 import '../../config/request_constants.dart';
+import '../../features/auth/data/response/fcm_token_response.dart';
 import '../../features/auth/data/response/login_response.dart';
 import '../../features/auth/data/response/register_response.dart';
 import '../../features/forget_password/data/response/forget_password_response.dart';
@@ -56,5 +57,10 @@ abstract class AppApi {
   @POST(RequestConstants.sendOtp)
   Future<SendOtpResponse> sendOtp(
     @Field(ApiConstants.email) String email,
+  );
+
+  @POST(RequestConstants.fcmTokenUpdate)
+  Future<FcmTokenResponse> sendFcmToken(
+    @Field(ApiConstants.fcmToken) String? token,
   );
 }
