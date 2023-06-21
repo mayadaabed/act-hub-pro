@@ -21,9 +21,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/internet_checker/internet_checker.dart';
 import '../core/storage/local/app_settings_shared_preferences.dart';
+import '../features/auth/data/data_source/remote_fcm_token_data_source.dart';
 import '../features/auth/data/data_source/remote_register_data_source.dart';
+import '../features/auth/data/repository_impl/fcm_repository_impl.dart';
 import '../features/auth/data/repository_impl/register_repository_impl.dart';
+import '../features/auth/domain/repository/fcm_token_repository.dart';
 import '../features/auth/domain/repository/register_repository.dart';
+import '../features/auth/domain/use_case/fcm_token_use_case.dart';
 import '../features/auth/presentation/controller/register_controller.dart';
 import '../features/forget_password/data/data_source/forget_password_remote_data_source.dart';
 import '../features/forget_password/data/repository_implementation/forget_password_repository_impl.dart';
@@ -119,6 +123,7 @@ initLoginModule() {
   disposeOutBoarding();
   disposeRegisterModule();
   initVerificationModule();
+  initFcmToken();
 
   if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.registerLazySingleton<RemoteLoginDataSource>(
@@ -149,6 +154,7 @@ initLoginModule() {
 }
 
 disposeLoginModule() {
+  disposeFcmToken();
   if (GetIt.I.isRegistered<RemoteLoginDataSource>()) {
     instance.unregister<RemoteLoginDataSource>();
   }
@@ -385,5 +391,37 @@ disposeSendOtp() async {
 
   if (GetIt.I.isRegistered<SendOtpUseCase>()) {
     instance.unregister<SendOtpUseCase>();
+  }
+}
+
+
+initFcmToken() async {
+  if (!GetIt.I.isRegistered<RemoteFcmTokenDataSource>()) {
+    instance.registerLazySingleton<RemoteFcmTokenDataSource>(
+        () => RemoteFcmTokenDataSourceImplement(instance<AppApi>()));
+  }
+
+  if (!GetIt.I.isRegistered<FcmTokenRepository>()) {
+    instance.registerLazySingleton<FcmTokenRepository>(
+        () => FcmTokenRepositoryImpl(instance(), instance()));
+  }
+
+  if (!GetIt.I.isRegistered<FcmTokenUseCase>()) {
+    instance
+        .registerFactory<FcmTokenUseCase>(() => FcmTokenUseCase(instance()));
+  }
+}
+
+disposeFcmToken() async {
+  if (GetIt.I.isRegistered<RemoteFcmTokenDataSource>()) {
+    instance.unregister<RemoteFcmTokenDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<FcmTokenRepository>()) {
+    instance.unregister<FcmTokenRepository>();
+  }
+
+  if (GetIt.I.isRegistered<FcmTokenUseCase>()) {
+    instance.unregister<FcmTokenUseCase>();
   }
 }
