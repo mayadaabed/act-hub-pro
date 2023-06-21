@@ -1,6 +1,7 @@
 import 'package:act_hub_project/config/dependency_injection.dart';
 import 'package:act_hub_project/core/resources/manager_sizes.dart';
 import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ import '../../../../core/storage/local/app_settings_shared_preferences.dart';
 import '../../../../core/widgets/dialog_button.dart';
 import '../../../../routes/routes.dart';
 import '../../../verification/presentation/controller/verification_controller.dart';
+import '../../domain/use_case/fcm_token_use_case.dart';
 
 class LoginController extends GetxController {
   late TextEditingController email = TextEditingController();
@@ -20,6 +22,7 @@ class LoginController extends GetxController {
   var formKey = GlobalKey<FormState>();
   final AppSettingsSharedPreferences _appSettingsSharedPreferences =
       instance<AppSettingsSharedPreferences>();
+  final FcmTokenUseCase _tokenUseCase = instance<FcmTokenUseCase>();
 
   bool rememberMe = false;
 
@@ -59,16 +62,18 @@ class LoginController extends GetxController {
               child: dialogButton(
                 onPressed: () async {
                   Get.back();
-                   if (l.message == ManagerStrings.notVerifiedEmail) {
-                  await VerificationController().sendOtp(
-                    context: context,
-                    route: Routes.verificationView,
-                  );
-                }
+                  if (l.message == ManagerStrings.notVerifiedEmail) {
+                    await VerificationController().sendOtp(
+                      context: context,
+                      route: Routes.verificationView,
+                    );
+                  }
                 },
                 message: ManagerStrings.ok,
               )));
-    }, (r) {
+    }, (r) async {
+      String? fcmToken = await FirebaseMessaging.instance.getToken();
+      _tokenUseCase.execute(FcmTokenUseCaseInput(fcmToken: fcmToken));
       if (rememberMe) {
         _appSettingsSharedPreferences.setEmail(email.text);
         _appSettingsSharedPreferences.setPassword(password.text);
