@@ -11,6 +11,7 @@ import 'package:act_hub_project/features/home/presentation/controller/home_contr
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,6 +40,12 @@ import '../features/home/data/repository_implementation/home_repository_implemen
 import '../features/home/domain/repository/home_repository.dart';
 import '../features/home/domain/use_case/home_use_case.dart';
 import '../features/main/presentation/controller/main_controller.dart';
+import '../features/profile/data/data_source.dart/edit_password_remote_data_source.dart';
+import '../features/profile/data/repository_impl/edit_password_repo_impl.dart';
+import '../features/profile/domain/repository/edit_password_repository.dart';
+import '../features/profile/domain/use_case/edit_password_use_case.dart';
+import '../features/profile/presentation/controller/locale_notifier_controller.dart';
+import '../features/profile/presentation/controller/profile_controller.dart';
 import '../features/reset_password/data/data_source/reset_password_remote_data_source.dart';
 import '../features/reset_password/data/repository_implementation/reset_password_repository_impl.dart';
 import '../features/reset_password/domain/repository/reset_password_repository.dart';
@@ -72,6 +79,7 @@ firebaseModule() async {
 
 initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await firebaseModule();
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
@@ -249,6 +257,7 @@ initHomeModule() {
   }
 
   Get.put<HomeController>(HomeController());
+  initProfile();
 }
 
 initVerificationModule() {
@@ -394,7 +403,6 @@ disposeSendOtp() async {
   }
 }
 
-
 initFcmToken() async {
   if (!GetIt.I.isRegistered<RemoteFcmTokenDataSource>()) {
     instance.registerLazySingleton<RemoteFcmTokenDataSource>(
@@ -423,5 +431,29 @@ disposeFcmToken() async {
 
   if (GetIt.I.isRegistered<FcmTokenUseCase>()) {
     instance.unregister<FcmTokenUseCase>();
+  }
+}
+
+initProfile() {
+  initChangePassword();
+
+  Get.put<ProfileController>(ProfileController());
+  Get.put<LocaleNotifierController>(LocaleNotifierController());
+}
+
+initChangePassword() {
+  if (!GetIt.I.isRegistered<RemoteEditPasswordDataSource>()) {
+    instance.registerLazySingleton<RemoteEditPasswordDataSource>(
+        () => RemoteEditPasswordDateSourceImplement(instance()));
+  }
+
+  if (!GetIt.I.isRegistered<EditPasswordRepository>()) {
+    instance.registerLazySingleton<EditPasswordRepository>(
+        () => EditPasswordRepoImpl(instance(), instance()));
+  }
+
+  if (!GetIt.I.isRegistered<EditPasswordUseCase>()) {
+    instance.registerFactory<EditPasswordUseCase>(
+        () => EditPasswordUseCase(instance<EditPasswordRepository>()));
   }
 }
