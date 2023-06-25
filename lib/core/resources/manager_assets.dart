@@ -1,5 +1,6 @@
 const String imagesPath = 'assets/images';
 const String jsonPath = 'assets/json';
+const String translationPath = 'assets/translations';
 
 class ManagerAssets {
   static const String background = '$imagesPath/background.png';
@@ -36,14 +37,20 @@ class ManagerAssets {
   static const String key = '$imagesPath/key.svg';
   static const String moon = '$imagesPath/moon.svg';
   static const String notification2 = '$imagesPath/notification2.svg';
-  static const String air_condition = '$imagesPath/air_condition.svg';
-  static const String course_hours = '$imagesPath/course_hours.svg';
+  static const String airCondition = '$imagesPath/air_condition.svg';
+  static const String courseHours = '$imagesPath/course_hours.svg';
   static const String lecture = '$imagesPath/lecture.svg';
-  static const String office_chair = '$imagesPath/office_chair.svg';
+  static const String officeChair = '$imagesPath/office_chair.svg';
   static const String security = '$imagesPath/security.svg';
   static const String wifi = '$imagesPath/wifi.svg';
   static const String calendar1 = '$imagesPath/calendar1.svg';
   static const String calender = '$imagesPath/calender.png';
+  static const String firstStepPayment = '$imagesPath/info.svg';
+  static const String secondStepPayment = '$imagesPath/card.svg';
+  static const String thirdStepPayment = '$imagesPath/document.svg';
+  static const String cashPayment = '$imagesPath/cash_payment.svg';
+  static const String submitPayment = '$imagesPath/submit_payment.svg';
+  static const String credit = '$imagesPath/card.svg';
 }
 
 class ManagerJson {

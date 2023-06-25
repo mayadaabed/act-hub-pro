@@ -32,7 +32,7 @@ class RegisterController extends GetxController {
       } else {
         dialogRender(
             context: context,
-            message: ManagerStrings.shouldAgreePolicy,
+            message: ManagerStrings.agreePolicy,
             stateRenderType: StateRenderType.popUpErrorState,
             title: ManagerStrings.error,
             child: Padding(
