@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "446735603544",
+    "project_id": "act-hub-3ce38",
+    "storage_bucket": "act-hub-3ce38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446735603544:android:4603d81aeb313375b2f72d",
+        "android_client_info": {
+          "package_name": "com.example.act_hub_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446735603544-p57fav5hcmfsenv8n4di1r28s3an8r6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCblpeFZpPv65xhmhD2d4g5-xmyCI2dxVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446735603544-p57fav5hcmfsenv8n4di1r28s3an8r6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

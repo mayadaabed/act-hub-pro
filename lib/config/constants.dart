@@ -14,6 +14,16 @@ class Constants {
   static const double arrowBackButtonElevation = 0;
   static const double elevation = 0;
   static const int unauthenticatedSession = 2;
+  static const String notificationChannel = 'act_hub_chanel';
+  static const String notificationChannelName = 'notificationChannelName';
+  static const String notificationChannelDescription =
+      'notificationChannelDescription';
+  static const String notificationIconName = 'launch_background';
+  static const String arabicKey = 'ar';
+  static const String englishKey = 'en';
+  static const String arabic = 'العربية';
+  static const String english = 'English';
+  static const String bearer = 'Bearer';
 }
 
 class ConstantsPrefsKeys {
@@ -22,10 +32,11 @@ class ConstantsPrefsKeys {
   static const String email = 'email';
   static const String password = 'password';
   static const String loggedIn = 'is_logged_in';
+  static const String locale = 'locale';
 }
 
 class ApiConstants {
-  static const String baseUrl = 'http://act-hub.actit.ps';
+  static const String baseUrl = 'https://act-hub-training.actit.ps';
   static const String authorization = 'Authorization';
   static const int sendTimeOutDuration = 120;
   static const int recieveTimeOutDuration = 120;
@@ -49,4 +60,10 @@ class ApiConstants {
   static const String accept = 'Accept';
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
+  static const String fcmToken = 'fcm_token';
+  static const String avatar = 'avatar';
+  static const String type = 'type';
+  static const String id = 'id';
+  static const String attributes = 'attributes';
+  static const String data = "data";
 }

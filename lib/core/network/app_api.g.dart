@@ -13,7 +13,7 @@ class _AppApi implements AppApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://act-hub.actit.ps';
+    baseUrl ??= 'https://act-hub-training.actit.ps';
   }
 
   final Dio _dio;
@@ -210,6 +210,31 @@ class _AppApi implements AppApi {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SendOtpResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<FcmTokenResponse> sendFcmToken(String? token) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = {'fcm_token': token};
+    _data.removeWhere((k, v) => v == null);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<FcmTokenResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/fcm_token_update',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = FcmTokenResponse.fromJson(_result.data!);
     return value;
   }
 

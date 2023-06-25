@@ -53,6 +53,8 @@ dependencies:
   flutter_local_notifications: ^14.1.1
   firebase_messaging: ^14.6.3
   firebase_core: ^2.14.0
+  easy_localization: ^3.0.2
+  dropdown_button2: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +84,7 @@ flutter:
   assets:
     - assets/images/
     - assets/json/
+    - assets/translations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
