@@ -1,5 +1,4 @@
 import 'package:act_hub_project/config/constants.dart';
-import 'package:act_hub_project/core/resources/manager_strings.dart';
 import 'package:act_hub_project/core/storage/local/app_settings_shared_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -32,7 +31,7 @@ class DioFactory {
         (RequestOptions options, RequestInterceptorHandler handler) async {
       String token = _appSettingsSharedPreferences.getToken();
       options.headers[ApiConstants.authorization] =
-          '${ManagerStrings.bearer} $token';
+          '${Constants.bearer} $token';
       return handler.next(options);
     });
 
@@ -52,6 +51,6 @@ class DioFactory {
   }
 
   String getAuthorization(String token) {
-    return '${ManagerStrings.bearer} $token';
+    return '${Constants.bearer} $token';
   }
 }
