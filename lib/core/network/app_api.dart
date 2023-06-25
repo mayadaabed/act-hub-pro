@@ -7,6 +7,7 @@ import '../../features/auth/data/response/login_response.dart';
 import '../../features/auth/data/response/register_response.dart';
 import '../../features/forget_password/data/response/forget_password_response.dart';
 import '../../features/home/data/response/home_response.dart';
+import '../../features/profile/data/response/edit_password_response.dart';
 import '../../features/reset_password/data/response/reset_password_response.dart';
 import '../../features/verification/data/response/send_otp_response.dart';
 import '../../features/verification/data/response/verification_response.dart';
@@ -62,5 +63,11 @@ abstract class AppApi {
   @POST(RequestConstants.fcmTokenUpdate)
   Future<FcmTokenResponse> sendFcmToken(
     @Field(ApiConstants.fcmToken) String? token,
+  );
+
+  @POST(RequestConstants.editPassword)
+  Future<EditPasswordResponse> editPassword(
+    @Field(ApiConstants.password) password,
+    @Field(ApiConstants.passwordConfirmation) passwordConfirmation,
   );
 }
