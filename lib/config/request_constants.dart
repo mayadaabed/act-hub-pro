@@ -9,4 +9,5 @@ class RequestConstants {
   static const String resetPassword = '$basePath/reset-password';
   static const String sendOtp = '$basePath/send-email-verification-code';
   static const String fcmTokenUpdate = '$basePath/fcm_token_update';
+  static const String editPassword = '$basePath/edit-user-password';
 }
