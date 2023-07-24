@@ -7,9 +7,9 @@ part of 'register_response.dart';
 // **************************************************************************
 
 RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) =>
-    RegisterResponse(
-      json['status'] as bool?,
-    )..message = json['message'] as String?;
+    RegisterResponse()
+      ..message = json['message'] as String?
+      ..status = json['status'] as bool?;
 
 Map<String, dynamic> _$RegisterResponseToJson(RegisterResponse instance) =>
     <String, dynamic>{

@@ -9,7 +9,7 @@ class RegisterResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.status)
   bool? status;
 
-  RegisterResponse(this.status);
+  RegisterResponse({this.status});
 
   factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
       _$RegisterResponseFromJson(json);

@@ -76,7 +76,7 @@ class LoginView extends StatelessWidget {
                 ),
                 mainButton(
                     child: Text(
-                      ManagerStrings.forgotPassword,
+                      ManagerStrings.forgetPassword,
                       style: getRegularTextStyle(
                           fontSize: ManagerFontSize.s14,
                           color: ManagerColors.primaryColor),

@@ -9,7 +9,7 @@ class ForgetPasswordResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.status)
   bool? status;
 
-  ForgetPasswordResponse({required this.status});
+  ForgetPasswordResponse({this.status});
 
   factory ForgetPasswordResponse.fromJson(Map<String, dynamic> json) =>
       _$ForgetPasswordResponseFromJson(json);
