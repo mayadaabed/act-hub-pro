@@ -9,7 +9,7 @@ class SendOtpResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.status)
   bool? status;
 
-  SendOtpResponse({required this.status});
+  SendOtpResponse({this.status});
 
   factory SendOtpResponse.fromJson(Map<String, dynamic> json) =>
       _$SendOtpResponseFromJson(json);

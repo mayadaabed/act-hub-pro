@@ -13,7 +13,7 @@ class EditPasswordResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.status)
   bool? status;
 
-  EditPasswordResponse({required this.data, required this.status});
+  EditPasswordResponse({ this.data,  this.status});
 
   factory EditPasswordResponse.fromJson(Map<String, dynamic> json) =>
       _$EditPasswordResponseFromJson(json);

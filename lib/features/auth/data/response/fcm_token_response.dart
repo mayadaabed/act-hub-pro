@@ -9,7 +9,7 @@ class FcmTokenResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.status)
   bool? status;
 
-  FcmTokenResponse({required this.status});
+  FcmTokenResponse({this.status,});
 
   factory FcmTokenResponse.fromJson(Map<String, dynamic> json) =>
       _$FcmTokenResponseFromJson(json);

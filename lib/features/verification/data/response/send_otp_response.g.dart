@@ -7,9 +7,9 @@ part of 'send_otp_response.dart';
 // **************************************************************************
 
 SendOtpResponse _$SendOtpResponseFromJson(Map<String, dynamic> json) =>
-    SendOtpResponse(
-      status: json['status'] as bool?,
-    )..message = json['message'] as String?;
+    SendOtpResponse()
+      ..message = json['message'] as String?
+      ..status = json['status'] as bool?;
 
 Map<String, dynamic> _$SendOtpResponseToJson(SendOtpResponse instance) =>
     <String, dynamic>{

@@ -21,11 +21,11 @@ class FailedValidator {
 
   String? validatePassword(String? password) {
     if (password!.isEmpty) {
-      return ManagerStrings.invalidEmail;
+      return ManagerStrings.invalidPasswordLength;
     }
 
     if (password.length < 8) {
-      return ManagerStrings.invalidEmail;
+      return ManagerStrings.invalidPasswordDigit;
     }
 
     return null;

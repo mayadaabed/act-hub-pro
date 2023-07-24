@@ -64,4 +64,36 @@ class AppSettingsSharedPreferences {
   Future<void> setLocale(String locale) async {
     await _sharedPreferences.setString(ConstantsPrefsKeys.locale, locale);
   }
+
+  Future<void> setAppTheme(String theme) async {
+    await _sharedPreferences.setString(Constants.prefKeyTheme, theme);
+  }
+
+  String getAppTheme() {
+    return _sharedPreferences.getString(Constants.prefKeyTheme).toString();
+  }
+
+  void setUserName(String name) async {
+    await _sharedPreferences.setString(Constants.username, name);
+  }
+
+  String getUserName() {
+    return _sharedPreferences.getString(Constants.username).onNull();
+  }
+
+  void setUserPhone(String phone) async {
+    await _sharedPreferences.setString(Constants.phone, phone);
+  }
+
+  String getUserPhone() {
+    return _sharedPreferences.getString(Constants.phone).onNull();
+  }
+
+  Future<void> setHasProfileData() async {
+    await _sharedPreferences.setBool(Constants.hasProfileData, true);
+  }
+
+  bool getHasProfileData() {
+    return _sharedPreferences.getBool(Constants.hasProfileData).onNull();
+  }
 }

@@ -24,8 +24,12 @@ class EditPasswordRepoImpl implements EditPasswordRepository {
         return Right(response.toDomain());
       } catch (e) {
         try {
-          return Left(Fauiler(ResponseCode.INTERNAL_SERVER_ERROR.value,
-              ManagerStrings.INTERNAL_SERVER_ERROR));
+           return Left(
+            Fauiler(
+              ResponseCode.INTERNAL_SERVER_ERROR.value,
+              ManagerStrings.internalServerError,
+            ),
+          );
         } catch (e) {
           return Left(
               Fauiler(ResponseCode.UNKNOWN.value, ManagerStrings.UNKNOWN));
@@ -35,7 +39,7 @@ class EditPasswordRepoImpl implements EditPasswordRepository {
       return Left(
         Fauiler(
           ResponseCode.NO_INTERNET_CONNECTION.value,
-          'NO_INTERNET_CONNECTION',
+           ManagerStrings.NO_INTERNT_CONNECTION,
         ),
       );
     }

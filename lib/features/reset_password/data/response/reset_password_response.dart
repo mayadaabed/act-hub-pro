@@ -7,7 +7,7 @@ class ResetPasswordResponse {
   @JsonKey(name: 'status')
   bool? status;
 
-  ResetPasswordResponse(this.status);
+  ResetPasswordResponse({this.status});
 
   factory ResetPasswordResponse.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordResponseFromJson(json);

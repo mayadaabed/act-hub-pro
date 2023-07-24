@@ -8,12 +8,11 @@ part of 'edit_password_attributes_response.dart';
 
 EditPasswordAttributesResponse _$EditPasswordAttributesResponseFromJson(
         Map<String, dynamic> json) =>
-    EditPasswordAttributesResponse(
-      name: json['name'] as String?,
-      email: json['email'] as String?,
-      phone: json['phone'] as String?,
-      avatar: json['avatar'] as String?,
-    );
+    EditPasswordAttributesResponse()
+      ..name = json['name'] as String?
+      ..email = json['email'] as String?
+      ..phone = json['phone'] as String?
+      ..avatar = json['avatar'] as String?;
 
 Map<String, dynamic> _$EditPasswordAttributesResponseToJson(
         EditPasswordAttributesResponse instance) =>

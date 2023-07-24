@@ -15,10 +15,10 @@ class EditPasswordAttributesResponse  {
   String? avatar;
 
   EditPasswordAttributesResponse(
-      {required this.name,
-      required this.email,
-      required this.phone,
-      required this.avatar});
+      { this.name,
+       this.email,
+       this.phone,
+       this.avatar});
 
   factory EditPasswordAttributesResponse.fromJson(Map<String, dynamic> json) =>
       _$EditPasswordAttributesResponseFromJson(json);

@@ -10,4 +10,9 @@ class RequestConstants {
   static const String sendOtp = '$basePath/send-email-verification-code';
   static const String fcmTokenUpdate = '$basePath/fcm_token_update';
   static const String editPassword = '$basePath/edit-user-password';
+  static const String courseDetails = '$basePath/course-details';
+  static const String profile = '$basePath/user-profile';
+  static const String paymentMethods = '$basePath/payment-methods/index';
+  static const String courseSubscription = '$basePath/subscriptions';
+  static const String courseRating = '$basePath/courses/ratings';
 }

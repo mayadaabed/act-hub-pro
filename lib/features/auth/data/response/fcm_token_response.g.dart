@@ -7,9 +7,9 @@ part of 'fcm_token_response.dart';
 // **************************************************************************
 
 FcmTokenResponse _$FcmTokenResponseFromJson(Map<String, dynamic> json) =>
-    FcmTokenResponse(
-      status: json['status'] as bool?,
-    )..message = json['message'] as String?;
+    FcmTokenResponse()
+      ..message = json['message'] as String?
+      ..status = json['status'] as bool?;
 
 Map<String, dynamic> _$FcmTokenResponseToJson(FcmTokenResponse instance) =>
     <String, dynamic>{

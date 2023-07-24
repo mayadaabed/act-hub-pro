@@ -7,6 +7,7 @@ import 'package:act_hub_project/features/auth/domain/repository/login_repository
 import 'package:act_hub_project/features/auth/domain/use_case/login_use_case.dart';
 import 'package:act_hub_project/features/auth/domain/use_case/register_use_case.dart';
 import 'package:act_hub_project/features/auth/presentation/controller/login_controller.dart';
+import 'package:act_hub_project/features/edit_profile/domain/repository/profile_repository.dart';
 import 'package:act_hub_project/features/home/presentation/controller/home_controller.dart';
 import 'package:act_hub_project/features/out_boarding/presentation/controller/out_boarding_controller.dart';
 import 'package:act_hub_project/features/splash/presentation/controller/splash_controller.dart';
@@ -30,6 +31,20 @@ import '../features/auth/domain/repository/fcm_token_repository.dart';
 import '../features/auth/domain/repository/register_repository.dart';
 import '../features/auth/domain/use_case/fcm_token_use_case.dart';
 import '../features/auth/presentation/controller/register_controller.dart';
+import '../features/courses/data/data_sourse/course_details_data_source.dart';
+import '../features/courses/data/data_sourse/course_rating_data_source.dart';
+import '../features/courses/data/data_sourse/course_subscription_data_source.dart';
+import '../features/courses/data/repository/course_details_repository.dart';
+import '../features/courses/data/repository/course_rating_repo_impl.dart';
+import '../features/courses/data/repository/course_subscription_repo_impl.dart';
+import '../features/courses/domain/use_case/course_details_usecase.dart';
+import '../features/courses/domain/use_case/course_rating_use_case.dart';
+import '../features/courses/domain/use_case/course_subscription_usecase.dart';
+import '../features/courses/presentation/controller/course_details_controller.dart';
+import '../features/courses/presentation/controller/stepper_controller.dart';
+import '../features/edit_profile/data/data_source/profile_remote_data_source.dart';
+import '../features/edit_profile/data/repository_impl/profile_repository_impl.dart';
+import '../features/edit_profile/domain/use_case/profile_use_case.dart';
 import '../features/forget_password/data/data_source/forget_password_remote_data_source.dart';
 import '../features/forget_password/data/repository_implementation/forget_password_repository_impl.dart';
 import '../features/forget_password/domain/repository/forget_password_repository.dart';
@@ -40,6 +55,10 @@ import '../features/home/data/repository_implementation/home_repository_implemen
 import '../features/home/domain/repository/home_repository.dart';
 import '../features/home/domain/use_case/home_use_case.dart';
 import '../features/main/presentation/controller/main_controller.dart';
+import '../features/payment/data/data_source/payments_remote_data_source.dart';
+import '../features/payment/data/repository_impl/payments_repository_impl.dart';
+import '../features/payment/domain/repository/payments_repository.dart';
+import '../features/payment/domain/use_case/payments_use_case.dart';
 import '../features/profile/data/data_source.dart/edit_password_remote_data_source.dart';
 import '../features/profile/data/repository_impl/edit_password_repo_impl.dart';
 import '../features/profile/domain/repository/edit_password_repository.dart';
@@ -258,6 +277,7 @@ initHomeModule() {
 
   Get.put<HomeController>(HomeController());
   initProfile();
+  disposeCourse();
 }
 
 initVerificationModule() {
@@ -436,6 +456,19 @@ disposeFcmToken() async {
 
 initProfile() {
   initChangePassword();
+  if (!GetIt.I.isRegistered<RemoteProfileDataSource>()) {
+    instance.registerLazySingleton<RemoteProfileDataSource>(
+        () => RemoteProfileDataSourceImplement(instance()));
+  }
+  if (!GetIt.I.isRegistered<ProfileRepository>()) {
+    instance.registerLazySingleton<ProfileRepository>(
+        () => ProfileRepoImplement(instance(), instance()));
+  }
+
+  if (!GetIt.I.isRegistered<ProfileUseCase>()) {
+    instance.registerFactory<ProfileUseCase>(
+        () => ProfileUseCase(instance<ProfileRepository>()));
+  }
 
   Get.put<ProfileController>(ProfileController());
   Get.put<LocaleNotifierController>(LocaleNotifierController());
@@ -455,5 +488,187 @@ initChangePassword() {
   if (!GetIt.I.isRegistered<EditPasswordUseCase>()) {
     instance.registerFactory<EditPasswordUseCase>(
         () => EditPasswordUseCase(instance<EditPasswordRepository>()));
+  }
+}
+
+initCourseDetails() {
+  if (!GetIt.I.isRegistered<CourseDetailsDataSource>()) {
+    instance.registerLazySingleton<CourseDetailsDataSource>(
+        () => CourseDetailsDataSourceImplementation(instance()));
+  }
+
+  if (!GetIt.I.isRegistered<CourseDetailsRepository>()) {
+    instance.registerLazySingleton<CourseDetailsRepository>(
+      () => CourseDetailsRepositoryImplementation(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CourseDetailsUseCase>()) {
+    instance.registerLazySingleton<CourseDetailsUseCase>(
+      () => CourseDetailsUseCase(
+        instance(),
+      ),
+    );
+  }
+
+  Get.put<CourseDetailsController>(CourseDetailsController());
+}
+
+initSubscriptionProcess() {
+  initPaymentsModule();
+  initCoursesSubscription();
+  Get.put<StepperController>(StepperController());
+}
+
+initPaymentsModule() {
+  if (!GetIt.I.isRegistered<RemotePaymentsDataSource>()) {
+    instance.registerLazySingleton<RemotePaymentsDataSource>(
+      () => RemotePaymentsDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<PaymentsRepository>()) {
+    instance.registerLazySingleton<PaymentsRepository>(
+      () => PaymentsRepositoryImplementation(
+        instance<RemotePaymentsDataSource>(),//
+        instance<NetworkInfo>(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<PaymentsUseCase>()) {
+    instance.registerLazySingleton<PaymentsUseCase>(
+      () => PaymentsUseCase(
+        instance<PaymentsRepository>(),
+      ),
+    );
+  }
+}
+
+initCoursesSubscription() {
+  if (!GetIt.I.isRegistered<RemoteCourseSubscriptionDataSource>()) {
+    instance.registerLazySingleton<RemoteCourseSubscriptionDataSource>(
+      () => RemoteCourseSubscriptionDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+  if (!GetIt.I.isRegistered<CourseSubscriptionRepository>()) {
+    instance.registerLazySingleton<CourseSubscriptionRepository>(
+      () => CourseSubscriptionRepoImplement(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CourseSubscriptionUseCase>()) {
+    instance.registerFactory<CourseSubscriptionUseCase>(
+      () => CourseSubscriptionUseCase(
+        instance<CourseSubscriptionRepository>(),
+      ),
+    );
+  }
+}
+
+disposeProfile() {
+  Get.delete<ProfileController>();
+  if (GetIt.I.isRegistered<RemoteProfileDataSource>()) {
+    instance.unregister<RemoteProfileDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<ProfileRepository>()) {
+    instance.unregister<ProfileRepository>();
+  }
+
+  if (GetIt.I.isRegistered<ProfileUseCase>()) {
+    instance.unregister<ProfileUseCase>();
+  }
+}
+
+initCourse() {
+  initCoursesRating();
+  initCourseDetails();
+  initCoursesSubscription();
+  initProfile();
+}
+
+disposeCourse() {
+  disposeCourseDescription();
+  disposeCourseRating();
+  disposeCoursesSubscription();
+  Get.delete<CourseDetailsController>();
+  Get.delete<StepperController>();
+}
+
+disposeCourseDescription() async {
+  if (GetIt.I.isRegistered<CourseDetailsDataSource>()) {
+    instance.unregister<CourseDetailsDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<CourseDetailsRepository>()) {
+    instance.unregister<CourseDetailsRepository>();
+  }
+
+  if (GetIt.I.isRegistered<CourseDetailsUseCase>()) {
+    instance.unregister<CourseDetailsUseCase>();
+  }
+}
+
+disposeCoursesSubscription() {
+  if (GetIt.I.isRegistered<RemoteCourseSubscriptionDataSource>()) {
+    instance.unregister<RemoteCourseSubscriptionDataSource>();
+  }
+  if (GetIt.I.isRegistered<CourseSubscriptionRepository>()) {
+    instance.unregister<CourseSubscriptionRepository>();
+  }
+
+  if (GetIt.I.isRegistered<CourseSubscriptionUseCase>()) {
+    instance.unregister<CourseSubscriptionUseCase>();
+  }
+}
+
+initCoursesRating() {
+  if (!GetIt.I.isRegistered<RemoteCourseRatingDataSource>()) {
+    instance.registerLazySingleton<RemoteCourseRatingDataSource>(
+      () => RemoteCourseRatingDataSourceImplement(
+        instance(),
+      ),
+    );
+  }
+  if (!GetIt.I.isRegistered<CourseRatingRepository>()) {
+    instance.registerLazySingleton<CourseRatingRepository>(
+      () => CourseRatingRepoImplement(
+        instance(),
+        instance(),
+      ),
+    );
+  }
+
+  if (!GetIt.I.isRegistered<CourseRatingUseCase>()) {
+    instance.registerLazySingleton<CourseRatingUseCase>(
+      () => CourseRatingUseCase(
+        instance(),
+      ),
+    );
+  }
+}
+
+disposeCourseRating() {
+  if (GetIt.I.isRegistered<RemoteCourseRatingDataSource>()) {
+    instance.unregister<RemoteCourseRatingDataSource>();
+  }
+
+  if (GetIt.I.isRegistered<CourseRatingRepository>()) {
+    instance.unregister<CourseRatingRepository>();
+  }
+
+  if (GetIt.I.isRegistered<CourseRatingUseCase>()) {
+    instance.unregister<CourseRatingUseCase>();
   }
 }

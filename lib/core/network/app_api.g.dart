@@ -267,6 +267,133 @@ class _AppApi implements AppApi {
     return value;
   }
 
+  @override
+  Future<CourseDetailsResponse> courseDetails(dynamic courseId) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'course_id': courseId};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CourseDetailsResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/course-details',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CourseDetailsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProfileResponse> profile() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProfileResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/user-profile',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ProfileResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PaymentsResponse> paymentMethods() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PaymentsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/payment-methods/index',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PaymentsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CourseSubscriptionResponse> courseSubscription(
+    int courseId,
+    int paymentMethodId,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'course_id': courseId,
+      'payment_method_id': paymentMethodId,
+    };
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CourseSubscriptionResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/subscriptions',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CourseSubscriptionResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CourseRatingResponse> courseRating(
+    int courseId,
+    double val,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'course_id': courseId,
+      'value': val,
+    };
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<CourseRatingResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/auth/user/courses/ratings',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = CourseRatingResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

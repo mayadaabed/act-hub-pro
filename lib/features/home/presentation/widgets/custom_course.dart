@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../../../../core/resources/manager_assets.dart';
 import '../../../../../core/resources/manager_colors.dart';
 import '../../../../../core/resources/manager_fonts.dart';
@@ -12,13 +11,14 @@ import '../controller/home_controller.dart';
 class CustomCourse extends StatelessWidget {
   final void Function()? onTap;
   final int index;
+  final HomeController controller;
 
-  const CustomCourse({Key? key, this.onTap, required this.index})
+   const CustomCourse(
+      {Key? key, this.onTap, required this.index, required this.controller})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(builder: (controller) {
       return InkWell(
         onTap: onTap,
         child: Container(
@@ -126,6 +126,6 @@ class CustomCourse extends StatelessWidget {
           ),
         ),
       );
-    });
+    
   }
 }

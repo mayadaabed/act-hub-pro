@@ -14,6 +14,7 @@ class Constants {
   static const double arrowBackButtonElevation = 0;
   static const double elevation = 0;
   static const int unauthenticatedSession = 2;
+  static const double zero = 0;
   static const String notificationChannel = 'act_hub_chanel';
   static const String notificationChannelName = 'notificationChannelName';
   static const String notificationChannelDescription =
@@ -24,6 +25,34 @@ class Constants {
   static const String arabic = 'العربية';
   static const String english = 'English';
   static const String bearer = 'Bearer';
+  static const String courseAttributes = 'attributes';
+  static const String courseUserRate = 'user_rate';
+  static const String courseIsRated = 'isRated';
+  static const String courseId = 'id';
+  static const String prefKeyTheme = 'theme_key';
+  static const String prefKeyEmail = 'email_key';
+  static const String prefKeyToken = 'token_key';
+  static const int splashTimeSecond = 1;
+  static const int sliderTimeMillSecond = 1;
+  static const double paymentElevation = 0;
+  static const double forgotPasswordElevation = 0;
+  static const int authFirstPartFlex = 1;
+  static const int authSecondPartFlex = 3;
+  static const String dark = 'dark';
+  static const String light = 'light';
+  static const String authorization = 'authorization';
+  static const int sendTimeOutDuration = 120;
+  static const int receiveTimeOutDuration = 60;
+  static const String acceptLanguage = 'Accept-Language';
+  static const String accept = 'Accept';
+  static const String contentType = 'Content-Type';
+  static const String applicationJson = 'application/json';
+  static const String message = 'message';
+  static const String errors = 'errors';
+  static const String error = 'error';
+  static const String username = 'username';
+  static const String phone = 'phone';
+  static const String hasProfileData = 'hasProfileData';
 }
 
 class ConstantsPrefsKeys {
@@ -33,6 +62,7 @@ class ConstantsPrefsKeys {
   static const String password = 'password';
   static const String loggedIn = 'is_logged_in';
   static const String locale = 'locale';
+  static const String courseId = "course_id";
 }
 
 class ApiConstants {
@@ -66,4 +96,7 @@ class ApiConstants {
   static const String id = 'id';
   static const String attributes = 'attributes';
   static const String data = "data";
+  static const String paymentMethodId = 'payment_method_id';
+  static const String value = 'value';
+  static const String courseId = 'course_id';
 }

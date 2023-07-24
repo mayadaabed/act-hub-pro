@@ -22,65 +22,74 @@ class HomeView extends StatelessWidget {
         appBar: homeAppBar(),
         body: GetBuilder<HomeController>(
           builder: (controller) {
-            return ListView(
-              children: [
-                SizedBox(height: ManagerHeight.h20),
-                const CustomBanner(),
-                CustomText(
-                  name: ManagerStrings.categories,
-                  nameButton: ManagerStrings.seeAll,
-                  buttonColor: ManagerColors.black.withOpacity(
-                    ManagerOpacity.op0_5,
+            return RefreshIndicator(
+              color: ManagerColors.primaryColor,
+              backgroundColor: ManagerColors.white,
+              onRefresh: () async {
+                await controller.home();
+              },
+              child: ListView(
+                children: [
+                  SizedBox(height: ManagerHeight.h20),
+                  const CustomBanner(),
+                  CustomText(
+                    name: ManagerStrings.categories,
+                    nameButton: ManagerStrings.seeAll,
+                    buttonColor: ManagerColors.black.withOpacity(
+                      ManagerOpacity.op0_5,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: ManagerHeight.h48,
-                  child: ListView.builder(
-                    itemCount: controller.categories.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return CustomCategory(
-                        name: controller
-                            .categories[index].attributeCategoryModel!.title
-                            .toString(),
-                        imagePath: controller
-                            .categories[index].attributeCategoryModel!.image
-                            .toString(),
-                        index: index,
-                      );
-                    },
+                  SizedBox(
+                    width: double.infinity,
+                    height: ManagerHeight.h48,
+                    child: ListView.builder(
+                      itemCount: controller.categories.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CustomCategory(
+                          name: controller
+                              .categories[index].attributeCategoryModel!.title
+                              .toString(),
+                          imagePath: controller
+                              .categories[index].attributeCategoryModel!.image
+                              .toString(),
+                          index: index,
+                        );
+                      },
+                    ),
                   ),
-                ),
-                 CustomText(
-                  name: ManagerStrings.popularCourses,
-                  nameButton: ManagerStrings.viewAll,
-                  buttonColor: ManagerColors.primaryColor,
-                ),
-                SizedBox(
-                  height: ManagerHeight.h500,
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.popularCourses.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          CustomCourse(
-                            index: index,
-                            // onTap: () => Get.to(() => CourseDescriptionView(index: index + 1)),
-                          ),
-                          Divider(
-                            indent: ManagerWidth.w14,
-                            endIndent: ManagerWidth.w14,
-                            color: ManagerColors.greyLight,
-                          ),
-                        ],
-                      );
-                    },
+                  CustomText(
+                    name: ManagerStrings.popularCourses,
+                    nameButton: ManagerStrings.viewAll,
+                    buttonColor: ManagerColors.primaryColor,
                   ),
-                ),
-                SizedBox(height: ManagerHeight.h20),
-              ],
+                  SizedBox(
+                    height: ManagerHeight.h500,
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.popularCourses.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            CustomCourse(
+                              index: index,
+                              controller: controller,
+                              onTap: () =>
+                                  controller.performCategoryDetails(index),
+                            ),
+                            Divider(
+                              indent: ManagerWidth.w14,
+                              endIndent: ManagerWidth.w14,
+                              color: ManagerColors.greyLight,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: ManagerHeight.h20),
+                ],
+              ),
             );
           },
         ),
