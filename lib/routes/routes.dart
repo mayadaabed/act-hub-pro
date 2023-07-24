@@ -6,6 +6,8 @@ import '../config/dependency_injection.dart';
 import '../core/resources/manager_strings.dart';
 import '../features/auth/presentation/view/login_view.dart';
 import '../features/auth/presentation/view/register_view.dart';
+import '../features/courses/presentation/view/course_details_view.dart';
+import '../features/courses/presentation/view/payment_selection_view.dart';
 import '../features/home/presentation/view/home_view.dart';
 import '../features/main/presentation/view/main_view.dart';
 import '../features/profile/presentation/view/locale_view.dart';
@@ -26,6 +28,8 @@ class Routes {
   static const String resetPassword = '/reset_password';
   static const String setting = '/setting_view';
   static const String localeView = '/locale_view';
+  static const String courseDetailsView = '/course_details_view';
+  static const String paymentSelectionView = '/payment_selection_view';
 }
 
 class RouteGenerator {
@@ -60,8 +64,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ResetPasswordView());
       case Routes.setting:
         return MaterialPageRoute(builder: (_) => const SettingView());
-       case Routes.localeView:
-        return MaterialPageRoute(builder: (_) => const LocaleView());  
+      case Routes.localeView:
+        return MaterialPageRoute(builder: (_) => const LocaleView());
+      case Routes.courseDetailsView:
+        initCourse();
+        return MaterialPageRoute(builder: (_) => const CourseDetailsView());
+      case Routes.paymentSelectionView:
+        initSubscriptionProcess();
+        return MaterialPageRoute(builder: (_) => const PaymentSelectionView());
       default:
         return undefinedRoute();
     }
@@ -71,10 +81,10 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title:  Text(ManagerStrings.noRoutFound),
+                title: Text(ManagerStrings.noRouteFound),
               ),
-              body:  Center(
-                child: Text(ManagerStrings.noRoutFound),
+              body: Center(
+                child: Text(ManagerStrings.noRouteFound),
               ),
             ));
   }
