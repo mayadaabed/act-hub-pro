@@ -38,4 +38,5 @@ class ManagerColors {
   static const Color enabledBorderInputVerification = Color(0xFFF0F0F0);
   static const Color focusedBorderInputVerification = primaryColor;
   static const Color fillInputVerification = Color(0xffF0F0F0);
+  static const Color paymentSelectorBorderSide = Color(0xff1CA0BF);
 }
