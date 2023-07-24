@@ -17,7 +17,7 @@ class LocaleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: ManagerStrings.localeView,
+        title: ManagerStrings.localePage,
       ),
       body: GetBuilder<LocaleNotifierController>(builder: (controller) {
         return Container(

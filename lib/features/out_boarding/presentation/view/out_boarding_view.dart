@@ -45,7 +45,7 @@ class OutBoardingView extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  height: ManagerHeight.h86,
+                  height: ManagerHeight.h80,
                 ),
                 Expanded(
                   child: PageView(

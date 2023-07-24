@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_state_render_dialog/flutter_state_render_dialog.dart';
 import 'package:get/get.dart';
-
+import 'package:act_hub_project/core/extentions/extentions.dart';
 import '../../../../config/dependency_injection.dart';
+import '../../../../core/cache/cache.dart';
+import '../../../../routes/routes.dart';
 import '../../domain/model/category_model.dart';
 import '../../domain/model/course_model.dart';
 import '../../domain/model/slider_model.dart';
@@ -21,6 +23,7 @@ class HomeController extends GetxController {
   List<CategoryModel> categories = [];
 
   final HomeUseCase _homeUseCase = instance<HomeUseCase>();
+  CacheData cacheData = CacheData();
 
   @override
   void onInit() {
@@ -37,6 +40,17 @@ class HomeController extends GetxController {
   void selectCategory(int index) {
     selectedCategoryIndex = index;
     update();
+  }
+  
+    setCurrentCourseId(int id) {
+    cacheData.setCurrentCourseId(id);
+  }
+
+  performCategoryDetails(int index) {
+    setCurrentCourseId(
+      popularCourses[index].id.onNull(),
+    );
+    Navigator.pushNamed(Get.context!, Routes.courseDetailsView);
   }
 
   Future<void> home() async {

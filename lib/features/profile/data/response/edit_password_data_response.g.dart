@@ -8,14 +8,13 @@ part of 'edit_password_data_response.dart';
 
 EditPasswordResponseData _$EditPasswordResponseDataFromJson(
         Map<String, dynamic> json) =>
-    EditPasswordResponseData(
-      type: json['type'] as String?,
-      id: json['id'] as int?,
-      attributes: json['attributes'] == null
+    EditPasswordResponseData()
+      ..type = json['type'] as String?
+      ..id = json['id'] as int?
+      ..attributes = json['attributes'] == null
           ? null
           : EditPasswordAttributesResponse.fromJson(
-              json['attributes'] as Map<String, dynamic>),
-    );
+              json['attributes'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$EditPasswordResponseDataToJson(
         EditPasswordResponseData instance) =>

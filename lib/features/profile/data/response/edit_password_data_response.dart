@@ -14,7 +14,7 @@ class EditPasswordResponseData {
   EditPasswordAttributesResponse? attributes;
 
   EditPasswordResponseData(
-      {required this.type, required this.id, required this.attributes});
+      { this.type,  this.id,  this.attributes});
 
   factory EditPasswordResponseData.fromJson(Map<String, dynamic> json) =>
       _$EditPasswordResponseDataFromJson(json);
