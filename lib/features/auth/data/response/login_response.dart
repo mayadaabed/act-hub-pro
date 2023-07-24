@@ -10,7 +10,7 @@ class LoginResponse extends BaseResponse {
   @JsonKey(name: ApiConstants.token)
   String? token;
 
-  LoginResponse(this.token);
+  LoginResponse({this.token});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
